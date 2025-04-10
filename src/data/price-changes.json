@@ -1,0 +1,33 @@
+{
+  "priceUps": [
+    {
+      "id": 1,
+      "name": "Fábio Ferreira Vieira",
+      "newPrice": 5.4,
+      "photoId": "438098.jpg",
+      "positionType": 3,
+      "news": "Has joined Portuguese side FC Porto on loan for the 2024/25 season",
+      "ownedBy": 0
+    }
+  ],
+  "priceDowns": [
+    {
+      "id": 2,
+      "name": "Gabriel Fernando de Jesus",
+      "newPrice": 6.5,
+      "photoId": "205651.jpg",
+      "positionType": 4,
+      "news": "Knee injury - Expected back 01 Jun",
+      "ownedBy": 1.1
+    },
+    {
+      "id": 3,
+      "name": "Gabriel dos Santos Magalhães",
+      "newPrice": 6.3,
+      "photoId": "226597.jpg",
+      "positionType": 2,
+      "news": "Hamstring injury - Unknown return date",
+      "ownedBy": 19.2
+    }
+  ]
+}
