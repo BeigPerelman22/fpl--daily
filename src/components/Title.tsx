@@ -5,8 +5,9 @@ import {
   useVideoConfig,
 } from "remotion";
 import React from "react";
+import "./Title.css";
 
-export const  Title: React.FC<{ title: string,subTitle?: string }> = ({ title, subTitle }) => {
+export const Title: React.FC<{ title: string; subTitle?: string }> = ({ title, subTitle }) => {
   const frame = useCurrentFrame();
   const { fps } = useVideoConfig();
 
@@ -17,35 +18,11 @@ export const  Title: React.FC<{ title: string,subTitle?: string }> = ({ title, s
 
   return (
     <Sequence durationInFrames={fps * 2}>
-      <div
-        style={{
-          height: "100%",
-          width: "100%",
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-          flexDirection: "column",
-        }}
-      >
-        <div
-          style={{
-            opacity,
-            // fontSize: 80,
-            fontWeight: 900,
-            // marginBottom: 60,
-            textShadow: "2px 2px 4px #000",
-          }}
-        >
+      <div className="title-container">
+        <div className="title-text" style={{ opacity }}>
           {title}
-        </div>        <div
-          style={{
-            opacity,
-            // fontSize: 80,
-            fontWeight: 900,
-            marginBottom: 60,
-            textShadow: "2px 2px 4px #000",
-          }}
-        >
+        </div>
+        <div className="subtitle-text" style={{ opacity }}>
           {subTitle}
         </div>
       </div>

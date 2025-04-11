@@ -1,0 +1,24 @@
+.price-list-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    flex-direction: column;
+}
+
+.price-list-title {
+    font-size: 120px;
+    font-weight: 900;
+    margin-bottom: 60px;
+    text-shadow: 3px 3px 0px black, -3px -3px 0px black, 3px -3px 0px black, -3px 3px 0px black;
+}
+
+.price-list-content {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 30px;
+}
