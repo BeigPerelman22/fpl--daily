@@ -1,24 +1,14 @@
 {
   "priceUps": [
     {
-      "id": 402,
-      "name": "Jacob Murphy",
-      "newPrice": 5.2,
-      "photoId": "114243",
+      "id": 17,
+      "name": "Bukayo Saka",
+      "newPrice": 10.5,
+      "photoId": "223340",
       "positionType": 3,
       "news": "",
-      "ownedBy": 12.6
+      "ownedBy": 21.9
     }
   ],
-  "priceDowns": [
-    {
-      "id": 396,
-      "name": "Martin Dúbravka",
-      "newPrice": 4.1,
-      "photoId": "67089",
-      "positionType": 1,
-      "news": "",
-      "ownedBy": 1.8
-    }
-  ]
+  "priceDowns": []
 }

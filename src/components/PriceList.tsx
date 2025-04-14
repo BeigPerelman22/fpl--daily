@@ -7,6 +7,11 @@ import {
 import { PriceCard } from "./PriceCard";
 import { PlayerModel } from "../models/player.model";
 import "./PriceList.css";
+import {
+  FADE_IN_DURATION_FRAMES,
+  MAX_GROUP_DURATION_SECONDS,
+  SECONDS_PER_PLAYER,
+} from "../lib/VideoConstants";
 
 type Props = {
   title: string;
@@ -17,27 +22,30 @@ type Props = {
 };
 
 export const PriceList: React.FC<Props> = ({
-                                             title,
-                                             players,
-                                             direction,
-                                             color,
-                                             startTimeInSeconds,
-                                           }) => {
+  title,
+  players,
+  direction,
+  color,
+  startTimeInSeconds,
+}) => {
   const frame = useCurrentFrame();
   const { fps } = useVideoConfig();
 
-  const durationInSeconds = Math.min(players.length * 2, 10);
+  const durationInSeconds = Math.min(
+    players.length * SECONDS_PER_PLAYER,
+    MAX_GROUP_DURATION_SECONDS,
+  );
   const sequenceStart = fps * startTimeInSeconds;
   const totalDurationInFrames = Math.ceil(durationInSeconds * fps);
 
   const opacity = interpolate(
     frame,
-    [sequenceStart, sequenceStart + 15],
+    [sequenceStart, sequenceStart + FADE_IN_DURATION_FRAMES],
     [0, 1],
     {
       extrapolateLeft: "clamp",
       extrapolateRight: "clamp",
-    }
+    },
   );
 
   return (

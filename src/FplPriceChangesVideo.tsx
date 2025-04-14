@@ -7,11 +7,11 @@ import {
   staticFile,
   useVideoConfig,
 } from "remotion";
-import { Title } from "./components/Title";
 import { UpPriceList } from "./components/UpPriceList";
 import { DownPriceList } from "./components/DownPriceList";
 import { Outro } from "./components/Outro";
-import { getFormattedDate } from "./lib/utils";
+import { BASE_START_TIME_SECONDS } from "./lib/VideoConstants";
+import { Intro } from "./components/Intro";
 
 export const FplPriceChangesVideo: React.FC = () => {
   const { fps } = useVideoConfig();
@@ -22,7 +22,6 @@ export const FplPriceChangesVideo: React.FC = () => {
   return (
     <AbsoluteFill
       style={{
-        height: "100%",
         fontFamily: "Poppins, sans-serif",
         color: "white",
         flexDirection: "column",
@@ -30,9 +29,21 @@ export const FplPriceChangesVideo: React.FC = () => {
         textAlign: "center",
       }}
     >
-      <div>
+      <Sequence from={fps * BASE_START_TIME_SECONDS}>
+        <Audio
+          volume={(frame) =>
+            interpolate(frame, [0, fadeInFrames], [0.1, 0.5], {
+              extrapolateRight: "clamp",
+            })
+          }
+          src={staticFile("assets/audio/spring-energy.mp3")}
+        ></Audio>
+      </Sequence>
+
+      <Intro></Intro>
+      <Sequence from={fps * BASE_START_TIME_SECONDS}>
         <Img
-          src={staticFile("assets/background-1.png")}
+          src={staticFile("assets/images/new-background.png")}
           style={{
             position: "absolute",
             top: 0,
@@ -43,44 +54,11 @@ export const FplPriceChangesVideo: React.FC = () => {
             zIndex: -1,
             filter: "blur(20px)",
           }}
-          alt="Background"
-        />
-        <Sequence durationInFrames={fps * 3}>
-          <Audio src={staticFile("assets/intro.mp3")}></Audio>
-        </Sequence>
-        <Sequence from={fps * 2}>
-          <Audio
-            volume={(frame) =>
-              interpolate(frame, [0, fadeInFrames], [0.1, 1], {
-                extrapolateRight: "clamp",
-              })
-            }
-            src={staticFile("assets/beat.mp3")}
-          ></Audio>
-        </Sequence>
-        <div style={{ fontFamily: "Poppins, sans-serif", fontSize: 130 }}>
-          <Title
-            title={"Player Price Changes"}
-            subTitle={getFormattedDate()}
-          ></Title>
-        </div>
-        <DownPriceList></DownPriceList>
-        <UpPriceList></UpPriceList>
-        <Outro></Outro>
-        <Img
-          src={staticFile("assets/logo.png")}
-          style={{
-            zIndex: 2,
-            position: "absolute",
-            bottom: 40,
-            left: 40,
-            height: 100,
-            width: 100,
-            borderRadius: 50,
-            border: "solid black 5px",
-          }}
-        />
-      </div>
+        ></Img>
+      </Sequence>
+      <DownPriceList></DownPriceList>
+      <UpPriceList></UpPriceList>
+      <Outro></Outro>
     </AbsoluteFill>
   );
 };

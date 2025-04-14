@@ -1,4 +1,4 @@
-export const playerTypeMap = {
+export const playerTypeMap: {[key: number]: string } = {
   1: "GKP",
   2: "DEF",
   3: "MID",

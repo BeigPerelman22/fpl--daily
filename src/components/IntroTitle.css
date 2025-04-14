@@ -1,0 +1,15 @@
+.title-container {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: end;
+    align-items: center;
+    flex-direction: column;
+}
+
+.title-text,
+.subtitle-text {
+    font-weight: 900;
+    text-shadow: 2px 2px 4px #000;
+    margin-bottom: 60px;
+}

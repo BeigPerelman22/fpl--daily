@@ -1,20 +1,37 @@
-import { priceDowns } from "../data/mock-price-changes";
-import { priceUps } from "../data/mock-price-changes";
 import { PriceList } from "./PriceList";
+import { UpPriceListDuration } from "./UpPriceList";
+import { chunkPlayers } from "../lib/utils";
+import { BASE_START_TIME_SECONDS, PLAYERS_PER_CHUNK, SECONDS_PER_PLAYER } from "../lib/VideoConstants";
+import priceChange from "../../public/assets/price-changes.json";
+import { PriceChange } from "../models/price-changes";
 
-export const DownPriceListDuration = Math.min(priceDowns.length * 2, 10);
-const UpPriceListDuration = Math.min(priceUps.length * 2, 10);
+const priceChanges: PriceChange = priceChange;
+
+const chunks = chunkPlayers(priceChanges.priceDowns, PLAYERS_PER_CHUNK);
+
+export const DownPriceListDuration = Math.min(
+  priceChanges.priceDowns.length * SECONDS_PER_PLAYER,
+  PLAYERS_PER_CHUNK * chunks.length
+);
 
 export const DownPriceList = () => {
-  const startTime = 2 + UpPriceListDuration;
-
   return (
-    <PriceList
-      title="Price Fallers"
-      players={priceDowns}
-      direction="down"
-      color="#ff7f7f"
-      startTimeInSeconds={startTime}
-    />
+    <>
+      {chunks.map((group, index) => {
+        const groupDuration = Math.min(group.length * SECONDS_PER_PLAYER, PLAYERS_PER_CHUNK);
+        const startTime = BASE_START_TIME_SECONDS + UpPriceListDuration + index * groupDuration;
+
+        return (
+          <PriceList
+            key={index}
+            title="Price Fallers"
+            players={group}
+            direction="down"
+            color="#ff7f7f"
+            startTimeInSeconds={startTime}
+          />
+        );
+      })}
+    </>
   );
 };
