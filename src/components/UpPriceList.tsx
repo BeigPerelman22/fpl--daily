@@ -1,5 +1,5 @@
 import { PriceList } from "./PriceList";
-import { chunkPlayers } from "../lib/utils";
+import { chunkPlayers, ChunksDuration, PlayerGroupDuration } from "../lib/utils";
 import { BASE_START_TIME_SECONDS, PLAYERS_PER_CHUNK, SECONDS_PER_PLAYER } from "../lib/VideoConstants";
 import { PriceChange } from "../models/price-changes";
 import priceChange from "../../public/assets/price-changes.json";
@@ -10,14 +10,14 @@ const chunks = chunkPlayers(priceChanges.priceUps, PLAYERS_PER_CHUNK); // groups
 
 export const UpPriceListDuration = Math.min(
   priceChanges.priceUps.length * SECONDS_PER_PLAYER,
-  PLAYERS_PER_CHUNK * chunks.length
+  ChunksDuration(chunks),
 );
 
 export const UpPriceList = () => {
   return (
     <>
       {chunks.map((group, index) => {
-        const groupDuration = Math.min(group.length * SECONDS_PER_PLAYER, PLAYERS_PER_CHUNK);
+        const groupDuration = PlayerGroupDuration(chunks, index);
         const startTime = BASE_START_TIME_SECONDS + index * groupDuration;
 
         return (
@@ -26,8 +26,9 @@ export const UpPriceList = () => {
             title="Price Rises"
             players={group}
             direction="up"
-            color="#90ee90"
+            color="white"
             startTimeInSeconds={startTime}
+            arrowSvg="/assets/images/green-arrow.svg"
           />
         );
       })}

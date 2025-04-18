@@ -1,6 +1,8 @@
 import {
+  Img,
   interpolate,
   Sequence,
+  staticFile,
   useCurrentFrame,
   useVideoConfig,
 } from "remotion";
@@ -19,6 +21,7 @@ type Props = {
   direction: "up" | "down";
   color: string;
   startTimeInSeconds: number;
+  arrowSvg: string;
 };
 
 export const PriceList: React.FC<Props> = ({
@@ -27,6 +30,7 @@ export const PriceList: React.FC<Props> = ({
   direction,
   color,
   startTimeInSeconds,
+  arrowSvg,
 }) => {
   const frame = useCurrentFrame();
   const { fps } = useVideoConfig();
@@ -52,7 +56,9 @@ export const PriceList: React.FC<Props> = ({
     <Sequence from={sequenceStart} durationInFrames={totalDurationInFrames}>
       <div className="price-list-container">
         <div className="price-list-title" style={{ color, opacity }}>
+          <Img src={staticFile(arrowSvg)} />
           {title}
+          <Img src={staticFile(arrowSvg)} />
         </div>
         <div className="price-list-content" style={{ opacity }}>
           {players.map((player, i) => (

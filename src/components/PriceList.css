@@ -7,10 +7,14 @@
 }
 
 .price-list-title {
-    font-size: 120px;
+    font-size: 115px;
     font-weight: 900;
     margin-bottom: 60px;
     text-shadow: 3px 3px 0px black, -3px -3px 0px black, 3px -3px 0px black, -3px 3px 0px black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
 }
 
 .price-list-content {
