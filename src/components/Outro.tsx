@@ -1,23 +1,31 @@
 import {
   interpolate,
   Sequence,
+  spring,
   useCurrentFrame,
   useVideoConfig,
 } from "remotion";
 import { UpPriceListDuration } from "./UpPriceList";
 import { DownPriceListDuration } from "./DownPriceList";
 import { BASE_START_TIME_SECONDS } from "../lib/VideoConstants";
+import { YouTubeLogo } from "./YouTubeLogo";
 
 export const Outro = () => {
-  const frame = useCurrentFrame();
+  const startTime =
+    BASE_START_TIME_SECONDS + UpPriceListDuration + DownPriceListDuration;
   const { fps } = useVideoConfig();
+  const frame = useCurrentFrame() - fps * startTime;
+
+  const scale = spring({
+    frame,
+    fps,
+    config: { damping: 200 },
+  });
 
   const opacity = interpolate(frame, [0, 10], [0, 1], {
     extrapolateLeft: "clamp",
     extrapolateRight: "clamp",
   });
-  const startTime =
-    BASE_START_TIME_SECONDS + UpPriceListDuration + DownPriceListDuration;
 
   return (
     <Sequence from={fps * startTime} durationInFrames={fps * 2}>
@@ -28,6 +36,7 @@ export const Outro = () => {
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
+          flexDirection: "column",
         }}
       >
         <div
@@ -39,6 +48,9 @@ export const Outro = () => {
           }}
         >
           Like & Subscribe for daily FPL updates!
+        </div>
+        <div style={{ transform: `scale(${scale})` }}>
+          <YouTubeLogo />
         </div>
       </div>
     </Sequence>
