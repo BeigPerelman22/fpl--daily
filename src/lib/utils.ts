@@ -5,7 +5,7 @@ import {
 } from "./VideoConstants";
 
 export const getFormattedDate = () => {
-  const options = { month: "long", day: "numeric" };
+  const options: Intl.DateTimeFormatOptions = { month: "long", day: "numeric" };
   const date = new Date();
   return date.toLocaleDateString("en-US", options); // Format the date as "Month Day, Year"
 };

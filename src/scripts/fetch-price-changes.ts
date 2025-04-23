@@ -32,7 +32,7 @@ async function getPriceChanges() {
     if (oldPrice != null && newPrice !== oldPrice) {
       const entry = {
         id: p.id,
-        name: `${p.first_name} ${p.second_name}`,
+        name: p.web_name,
         newPrice: newPrice / 10,
         photoId: p.photo.replace(".jpg", ""),
         positionType: p.element_type,

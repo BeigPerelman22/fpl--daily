@@ -6,9 +6,12 @@
   "license": "UNLICENSED",
   "private": true,
   "dependencies": {
+    "@google-cloud/local-auth": "^3.0.1",
     "@remotion/cli": "4.0.286",
     "@remotion/zod-types": "4.0.286",
     "clsx": "^2.1.1",
+    "google-auth-library": "^9.15.1",
+    "googleapis": "^148.0.0",
     "node-fetch": "^3.3.2",
     "react": "19.0.0",
     "react-dom": "19.0.0",
@@ -17,11 +20,13 @@
   },
   "devDependencies": {
     "@remotion/eslint-config-flat": "4.0.286",
+    "@types/node": "^22.14.1",
     "@types/react": "19.0.0",
     "@types/web": "0.0.166",
     "eslint": "9.19.0",
     "prettier": "3.3.3",
-    "typescript": "5.5.4"
+    "ts-node": "^10.9.2",
+    "typescript": "^5.7.3"
   },
   "scripts": {
     "dev": "remotion studio",

@@ -6,5 +6,6 @@ export interface ApiPlayer {
   second_name: string;
   element_type: number;
   news: string;
+  web_name: string;
   selected_by_percent: string;
 }
