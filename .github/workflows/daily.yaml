@@ -29,3 +29,21 @@ jobs:
 
       - name: Run daily video generation and upload
         run: npm run daily
+
+      # Commit and Push price changes only if video generation is successful
+      - name: Commit and Push price changes
+        if: success()  # Only run this step if the previous steps were successful
+        run: |
+          git config --global user.name "GitHub Actions"
+          git config --global user.email "actions@github.com"
+          
+          # Stage the updated files
+          git add public/assets/price-changes.json src/data/yesterday-players.json
+
+          # Commit the changes
+          git commit -m "Update FPL price changes"
+
+          # Push the changes back to the repository
+          git push origin main  # Replace 'main' with the appropriate branch name if needed
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
