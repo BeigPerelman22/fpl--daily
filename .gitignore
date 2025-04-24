@@ -7,3 +7,6 @@ dist
 out
 
 build
+# Ignore client secrets and tokens
+src/scripts/client_secret.json
+src/scripts/oauth_token.json
