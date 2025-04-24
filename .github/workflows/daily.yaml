@@ -22,10 +22,10 @@ jobs:
         run: npm ci
 
       - name: Write client_secret.json
-        run: echo "${{ secrets.CLIENT_SECRET_JSON }}" > src/scripts/client_secret.json
+        run: echo "${{ secrets.CLIENT_SECRET_JSON }}" >  src/scripts/client_secret.json
 
       - name: Write oauth_token.json
-        run: echo "${{ secrets.OAUTH_TOKEN_JSON }}" > src/scripts/oauth_token.json
+        run: echo "${{ secrets.OAUTH_TOKEN_JSON }}" > src/scripts/token.json
 
       - name: Run daily video generation and upload
         run: npm run daily
