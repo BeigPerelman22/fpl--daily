@@ -1,23 +1,32 @@
 import fs from "fs";
 import path from "path";
-import { authenticate } from "@google-cloud/local-auth";
 import { google } from "googleapis";
 import { getFormattedDate } from "../lib/utils";
 
-async function uploadVideo() {
-  const auth = await authenticate({
-    keyfilePath: path.join(__dirname, "client_secret.json"),
-    scopes: ["https://www.googleapis.com/auth/youtube.upload"],
-  });
+// Load client credentials
+const CREDENTIALS_PATH = path.join(__dirname, "client_secret.json");
+const TOKEN_PATH = path.join(__dirname, "oauth_token.json");
 
+async function loadSavedCredentials() {
+  const content = fs.readFileSync(CREDENTIALS_PATH, "utf-8");
+  const credentials = JSON.parse(content);
+  const { client_id, client_secret, redirect_uris } = credentials.installed;
+
+  const oAuth2Client = new google.auth.OAuth2(client_id, client_secret, redirect_uris[0]);
+
+  const token = JSON.parse(fs.readFileSync(TOKEN_PATH, "utf-8"));
+  oAuth2Client.setCredentials(token);
+
+  return oAuth2Client;
+}
+
+async function uploadVideo() {
+  const auth = await loadSavedCredentials();
   const youtube = google.youtube({ version: "v3", auth });
 
-  const res = await youtube.videos.insert({
-    part: ["snippet", "status"],
-    requestBody: {
-      snippet: {
-        title: `FPL Price Changes ${getFormattedDate()} – Latest Player Updates!`,
-        description: `Here are all the Fantasy Premier League (FPL) price changes for ${getFormattedDate()}, 2025!
+  const formattedDate = getFormattedDate();
+  const videoTitle = `FPL Price Changes ${formattedDate} – Latest Player Updates!`;
+  const videoDescription = `Here are all the Fantasy Premier League (FPL) price changes for ${formattedDate}, 2025!
 Find out which FPL players went up in price and who took a price drop overnight. Perfect info to help you plan your next transfer before the deadline! ⏰
 
 📈 Daily price rises & drops
@@ -26,7 +35,16 @@ Find out which FPL players went up in price and who took a price drop overnight.
 
 👉 Like & subscribe for your daily FPL updates!
 
-#FPL #FPLPriceChanges #FantasyPremierLeague #FPLTips #GameweekUpdates #FPLShorts #FPLDaily #FPL2025`,
+#FPL #FPLPriceChanges #FantasyPremierLeague #FPLTips #GameweekUpdates #FPLShorts #FPLDaily #FPL2025`;
+
+  const videoPath = `./out/fpl-price-changes-${formattedDate}.mp4`;
+
+  const res = await youtube.videos.insert({
+    part: ["snippet", "status"],
+    requestBody: {
+      snippet: {
+        title: videoTitle,
+        description: videoDescription,
         categoryId: "24",
       },
       status: {
@@ -34,12 +52,13 @@ Find out which FPL players went up in price and who took a price drop overnight.
       },
     },
     media: {
-      body: fs.createReadStream(`./out/fpl-price-changes-${getFormattedDate()}.mp4`), // adjust this if your rendered video is somewhere else
+      body: fs.createReadStream(videoPath),
     },
   });
 
-  console.log(`✅ Video uploaded! Video ID: ${res.data.id}`);
-  console.log(`📺 https://www.youtube.com/watch?v=${res.data.id}`);
+  const videoId = res.data.id;
+  console.log(`✅ Video uploaded! Video ID: ${videoId}`);
+  console.log(`📺 https://www.youtube.com/watch?v=${videoId}`);
 }
 
 uploadVideo().catch(console.error);
