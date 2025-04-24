@@ -34,8 +34,8 @@
     "build": "remotion bundle",
     "upgrade": "remotion upgrade",
     "lint": "eslint src && tsc",
-    "generate": "npx ts-node src/scripts/generate-daily-video.ts",
+    "render": "npx ts-node src/scripts/generate-daily-video.ts",
     "upload": "npx ts-node src/scripts/upload.ts",
-    "daily": "run-s generate upload"
+    "daily": "run-s render upload"
   }
 }

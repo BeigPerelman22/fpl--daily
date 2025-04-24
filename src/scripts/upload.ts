@@ -5,7 +5,7 @@ import { getFormattedDate } from "../lib/utils";
 
 // Load client credentials
 const CREDENTIALS_PATH = path.join(__dirname, "client_secret.json");
-const TOKEN_PATH = path.join(__dirname, "oauth_token.json");
+const TOKEN_PATH = path.join(__dirname, "token.json");
 
 async function loadSavedCredentials() {
   const content = fs.readFileSync(CREDENTIALS_PATH, "utf-8");
@@ -59,6 +59,7 @@ Find out which FPL players went up in price and who took a price drop overnight.
   const videoId = res.data.id;
   console.log(`✅ Video uploaded! Video ID: ${videoId}`);
   console.log(`📺 https://www.youtube.com/watch?v=${videoId}`);
+
 }
 
 uploadVideo().catch(console.error);
