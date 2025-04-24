@@ -3,18 +3,8 @@ import path from "path";
 import { google } from "googleapis";
 import { getFormattedDate } from "../lib/utils";
 
-function decodeAndSaveBase64ToFile(envVar: string, filePath: string) {
-  const base64Content = process.env[envVar];
-  if (!base64Content) throw new Error(`Missing environment variable: ${envVar}`);
-  fs.writeFileSync(filePath, Buffer.from(base64Content, "base64"));
-}
-
-// Save secrets to temp files
 const CREDENTIALS_PATH = path.join(__dirname, "client_secret.json");
 const TOKEN_PATH = path.join(__dirname, "token.json");
-
-decodeAndSaveBase64ToFile("CLIENT_SECRET_JSON", CREDENTIALS_PATH);
-decodeAndSaveBase64ToFile("OAUTH_TOKEN_JSON", TOKEN_PATH);
 
 async function loadSavedCredentials() {
   const content = fs.readFileSync(CREDENTIALS_PATH, "utf-8");
