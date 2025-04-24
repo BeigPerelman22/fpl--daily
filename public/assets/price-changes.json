@@ -1,14 +1,4 @@
 {
   "priceUps": [],
-  "priceDowns": [
-    {
-      "id": 1,
-      "name": "Fábio Vieira",
-      "newPrice": 5.4,
-      "photoId": "438098",
-      "positionType": 3,
-      "news": "Has joined Portuguese side FC Porto on loan for the 2024/25 season",
-      "ownedBy": 0
-    }
-  ]
+  "priceDowns": []
 }
