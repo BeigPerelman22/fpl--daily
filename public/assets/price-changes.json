@@ -1,4 +1,24 @@
 {
-  "priceUps": [],
-  "priceDowns": []
+  "priceUps": [
+    {
+      "id": 447,
+      "name": "Wood",
+      "newPrice": 7,
+      "photoId": "60689",
+      "positionType": 4,
+      "news": "",
+      "ownedBy": 28
+    }
+  ],
+  "priceDowns": [
+    {
+      "id": 530,
+      "name": "Souček",
+      "newPrice": 4.8,
+      "photoId": "215439",
+      "positionType": 3,
+      "news": "",
+      "ownedBy": 1.4
+    }
+  ]
 }
