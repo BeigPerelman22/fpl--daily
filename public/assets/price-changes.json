@@ -1,87 +1,87 @@
 {
   "priceUps": [
     {
-      "id": 110,
-      "name": "Wissa",
-      "newPrice": 6.6,
-      "photoId": "216646",
-      "positionType": 4,
+      "id": 579,
+      "name": "Sessegnon",
+      "newPrice": 4.2,
+      "photoId": "184349",
+      "positionType": 2,
       "news": "",
-      "ownedBy": 14.5
+      "ownedBy": 2.1
     },
     {
-      "id": 247,
-      "name": "Iwobi",
-      "newPrice": 5.6,
-      "photoId": "153133",
-      "positionType": 3,
+      "id": 339,
+      "name": "Virgil",
+      "newPrice": 6.7,
+      "photoId": "97032",
+      "positionType": 2,
       "news": "",
-      "ownedBy": 9.1
+      "ownedBy": 26.3
     },
     {
-      "id": 327,
-      "name": "Luis Díaz",
-      "newPrice": 7.6,
-      "photoId": "244731",
-      "positionType": 3,
+      "id": 418,
+      "name": "Trippier",
+      "newPrice": 5.7,
+      "photoId": "77794",
+      "positionType": 2,
       "news": "",
-      "ownedBy": 21.8
+      "ownedBy": 5.6
     },
     {
-      "id": 402,
-      "name": "J.Murphy",
-      "newPrice": 5.3,
-      "photoId": "114243",
-      "positionType": 3,
+      "id": 436,
+      "name": "Murillo",
+      "newPrice": 4.8,
+      "photoId": "575476",
+      "positionType": 2,
       "news": "",
-      "ownedBy": 18.3
+      "ownedBy": 5.1
     },
     {
-      "id": 413,
-      "name": "Pope",
-      "newPrice": 5,
-      "photoId": "98747",
-      "positionType": 1,
+      "id": 573,
+      "name": "Milenković",
+      "newPrice": 5.2,
+      "photoId": "227444",
+      "positionType": 2,
       "news": "",
-      "ownedBy": 7.2
-    },
-    {
-      "id": 514,
-      "name": "Bowen",
-      "newPrice": 7.6,
-      "photoId": "178186",
-      "positionType": 3,
-      "news": "",
-      "ownedBy": 9.4
-    },
-    {
-      "id": 541,
-      "name": "Cunha",
-      "newPrice": 7,
-      "photoId": "430871",
-      "positionType": 4,
-      "news": "",
-      "ownedBy": 17.4
+      "ownedBy": 17.5
     }
   ],
   "priceDowns": [
     {
-      "id": 12,
-      "name": "Nwaneri",
-      "newPrice": 4.4,
-      "photoId": "499175",
-      "positionType": 3,
-      "news": "",
-      "ownedBy": 1.7
+      "id": 129,
+      "name": "João Pedro",
+      "newPrice": 5.5,
+      "photoId": "475168",
+      "positionType": 4,
+      "news": "Suspended until 19 May",
+      "ownedBy": 10.7
     },
     {
-      "id": 89,
-      "name": "Damsgaard",
-      "newPrice": 4.9,
-      "photoId": "440089",
-      "positionType": 3,
+      "id": 207,
+      "name": "Mateta",
+      "newPrice": 7.7,
+      "photoId": "231747",
+      "positionType": 4,
       "news": "",
-      "ownedBy": 1.2
+      "ownedBy": 14.9
+    },
+    {
+      "id": 755,
+      "name": "Marmoush",
+      "newPrice": 7.6,
+      "photoId": "438234",
+      "positionType": 4,
+      "news": "",
+      "ownedBy": 28.4
+    },
+    {
+      "id": 388,
+      "name": "Wan-Bissaka",
+      "newPrice": 4.4,
+      "photoId": "214590",
+      "positionType": 2,
+      "news": "",
+      "ownedBy": 5
     }
   ]
 }
