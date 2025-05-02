@@ -1,4 +1,41 @@
 {
   "priceUps": [],
-  "priceDowns": []
+  "priceDowns": [
+    {
+      "id": 17,
+      "name": "Saka",
+      "newPrice": 10.4,
+      "photoId": "223340",
+      "positionType": 3,
+      "news": "",
+      "ownedBy": 22
+    },
+    {
+      "id": 182,
+      "name": "Palmer",
+      "newPrice": 10.5,
+      "photoId": "244851",
+      "positionType": 3,
+      "news": "",
+      "ownedBy": 34.9
+    },
+    {
+      "id": 585,
+      "name": "I.Sarr",
+      "newPrice": 5.7,
+      "photoId": "232185",
+      "positionType": 3,
+      "news": "",
+      "ownedBy": 8.5
+    },
+    {
+      "id": 396,
+      "name": "Dúbravka",
+      "newPrice": 4,
+      "photoId": "67089",
+      "positionType": 1,
+      "news": "",
+      "ownedBy": 1.4
+    }
+  ]
 }
