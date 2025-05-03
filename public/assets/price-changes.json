@@ -1,41 +1,87 @@
 {
-  "priceUps": [],
+  "priceUps": [
+    {
+      "id": 23,
+      "name": "Trossard",
+      "newPrice": 6.8,
+      "photoId": "116216",
+      "positionType": 3,
+      "news": "",
+      "ownedBy": 4.7
+    },
+    {
+      "id": 99,
+      "name": "Mbeumo",
+      "newPrice": 8.2,
+      "photoId": "446008",
+      "positionType": 3,
+      "news": "",
+      "ownedBy": 42
+    },
+    {
+      "id": 110,
+      "name": "Wissa",
+      "newPrice": 6.7,
+      "photoId": "216646",
+      "positionType": 4,
+      "news": "",
+      "ownedBy": 16.7
+    },
+    {
+      "id": 350,
+      "name": "Gvardiol",
+      "newPrice": 6.4,
+      "photoId": "477424",
+      "positionType": 2,
+      "news": "",
+      "ownedBy": 33.7
+    },
+    {
+      "id": 514,
+      "name": "Bowen",
+      "newPrice": 7.7,
+      "photoId": "178186",
+      "positionType": 3,
+      "news": "",
+      "ownedBy": 11.3
+    }
+  ],
   "priceDowns": [
     {
-      "id": 17,
-      "name": "Saka",
-      "newPrice": 10.4,
-      "photoId": "223340",
+      "id": 74,
+      "name": "O.Dango",
+      "newPrice": 4.6,
+      "photoId": "533463",
       "positionType": 3,
-      "news": "",
-      "ownedBy": 22
-    },
-    {
-      "id": 182,
-      "name": "Palmer",
-      "newPrice": 10.5,
-      "photoId": "244851",
-      "positionType": 3,
-      "news": "",
-      "ownedBy": 34.9
-    },
-    {
-      "id": 585,
-      "name": "I.Sarr",
-      "newPrice": 5.7,
-      "photoId": "232185",
-      "positionType": 3,
-      "news": "",
-      "ownedBy": 8.5
-    },
-    {
-      "id": 396,
-      "name": "Dúbravka",
-      "newPrice": 4,
-      "photoId": "67089",
-      "positionType": 1,
       "news": "",
       "ownedBy": 1.4
+    },
+    {
+      "id": 135,
+      "name": "Minteh",
+      "newPrice": 4.8,
+      "photoId": "592031",
+      "positionType": 3,
+      "news": "",
+      "ownedBy": 1
+    },
+    {
+      "id": 227,
+      "name": "J.Virginia",
+      "newPrice": 3.8,
+      "photoId": "222627",
+      "positionType": 1,
+      "news": "",
+      "ownedBy": 0.5
+    },
+    {
+      "id": 27,
+      "name": "Archer",
+      "newPrice": 4.8,
+      "photoId": "433979",
+      "positionType": 4,
+      "news": "",
+      "ownedBy": 1.2
     }
   ]
 }
