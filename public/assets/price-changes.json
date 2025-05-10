@@ -1,87 +1,87 @@
 {
   "priceUps": [
     {
-      "id": 23,
-      "name": "Trossard",
-      "newPrice": 6.8,
-      "photoId": "116216",
-      "positionType": 3,
-      "news": "",
-      "ownedBy": 4.7
-    },
-    {
-      "id": 99,
-      "name": "Mbeumo",
-      "newPrice": 8.2,
-      "photoId": "446008",
-      "positionType": 3,
-      "news": "",
-      "ownedBy": 42
-    },
-    {
       "id": 110,
       "name": "Wissa",
-      "newPrice": 6.7,
+      "newPrice": 6.8,
       "photoId": "216646",
       "positionType": 4,
       "news": "",
-      "ownedBy": 16.7
+      "ownedBy": 20
     },
     {
-      "id": 350,
-      "name": "Gvardiol",
-      "newPrice": 6.4,
-      "photoId": "477424",
-      "positionType": 2,
-      "news": "",
-      "ownedBy": 33.7
-    },
-    {
-      "id": 514,
-      "name": "Bowen",
-      "newPrice": 7.7,
-      "photoId": "178186",
+      "id": 345,
+      "name": "De Bruyne",
+      "newPrice": 9.6,
+      "photoId": "61366",
       "positionType": 3,
       "news": "",
-      "ownedBy": 11.3
+      "ownedBy": 12.8
     }
   ],
   "priceDowns": [
     {
-      "id": 74,
-      "name": "O.Dango",
-      "newPrice": 4.6,
-      "photoId": "533463",
+      "id": 18,
+      "name": "Saliba",
+      "newPrice": 6.5,
+      "photoId": "462424",
+      "positionType": 2,
+      "news": "",
+      "ownedBy": 31
+    },
+    {
+      "id": 36,
+      "name": "Digne",
+      "newPrice": 4.4,
+      "photoId": "101188",
+      "positionType": 2,
+      "news": "",
+      "ownedBy": 5.8
+    },
+    {
+      "id": 627,
+      "name": "Dixon",
+      "newPrice": 3.9,
+      "photoId": "496178",
+      "positionType": 2,
+      "news": "",
+      "ownedBy": 0.1
+    },
+    {
+      "id": 327,
+      "name": "Luis Díaz",
+      "newPrice": 7.5,
+      "photoId": "244731",
       "positionType": 3,
       "news": "",
-      "ownedBy": 1.4
+      "ownedBy": 17.2
     },
     {
-      "id": 135,
-      "name": "Minteh",
-      "newPrice": 4.8,
-      "photoId": "592031",
+      "id": 571,
+      "name": "Savinho",
+      "newPrice": 6.1,
+      "photoId": "510281",
       "positionType": 3,
       "news": "",
-      "ownedBy": 1
+      "ownedBy": 2.5
     },
     {
-      "id": 227,
-      "name": "J.Virginia",
-      "newPrice": 3.8,
-      "photoId": "222627",
-      "positionType": 1,
-      "news": "",
-      "ownedBy": 0.5
-    },
-    {
-      "id": 27,
-      "name": "Archer",
+      "id": 523,
+      "name": "Ings",
       "newPrice": 4.8,
-      "photoId": "433979",
+      "photoId": "84939",
       "positionType": 4,
       "news": "",
       "ownedBy": 1.2
+    },
+    {
+      "id": 566,
+      "name": "Strand Larsen",
+      "newPrice": 5.3,
+      "photoId": "247412",
+      "positionType": 4,
+      "news": "Groin Injury - 75% chance of playing",
+      "ownedBy": 3.6
     }
   ]
 }
