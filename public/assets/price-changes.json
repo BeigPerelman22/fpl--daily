@@ -1,87 +1,69 @@
 {
   "priceUps": [
     {
-      "id": 110,
-      "name": "Wissa",
-      "newPrice": 6.8,
-      "photoId": "216646",
-      "positionType": 4,
+      "id": 219,
+      "name": "Branthwaite",
+      "newPrice": 4.9,
+      "photoId": "480455",
+      "positionType": 2,
       "news": "",
-      "ownedBy": 20
+      "ownedBy": 2.3
     },
     {
-      "id": 345,
-      "name": "De Bruyne",
-      "newPrice": 9.6,
-      "photoId": "61366",
+      "id": 514,
+      "name": "Bowen",
+      "newPrice": 7.8,
+      "photoId": "178186",
       "positionType": 3,
       "news": "",
-      "ownedBy": 12.8
+      "ownedBy": 13.1
     }
   ],
   "priceDowns": [
     {
-      "id": 18,
-      "name": "Saliba",
-      "newPrice": 6.5,
-      "photoId": "462424",
-      "positionType": 2,
-      "news": "",
-      "ownedBy": 31
-    },
-    {
-      "id": 36,
-      "name": "Digne",
-      "newPrice": 4.4,
-      "photoId": "101188",
-      "positionType": 2,
-      "news": "",
-      "ownedBy": 5.8
-    },
-    {
-      "id": 627,
-      "name": "Dixon",
-      "newPrice": 3.9,
-      "photoId": "496178",
-      "positionType": 2,
-      "news": "",
+      "id": 63,
+      "name": "Christie",
+      "newPrice": 4.8,
+      "photoId": "158499",
+      "positionType": 3,
+      "news": "Groin Injury - Expected back 01 Jun",
       "ownedBy": 0.1
     },
     {
-      "id": 327,
-      "name": "Luis Díaz",
-      "newPrice": 7.5,
-      "photoId": "244731",
+      "id": 136,
+      "name": "Mitoma",
+      "newPrice": 6.3,
+      "photoId": "451340",
       "positionType": 3,
       "news": "",
-      "ownedBy": 17.2
+      "ownedBy": 6.3
     },
     {
-      "id": 571,
-      "name": "Savinho",
-      "newPrice": 6.1,
-      "photoId": "510281",
+      "id": 328,
+      "name": "M.Salah",
+      "newPrice": 13.6,
+      "photoId": "118748",
       "positionType": 3,
       "news": "",
-      "ownedBy": 2.5
+      "ownedBy": 67.5
     },
     {
-      "id": 523,
-      "name": "Ings",
-      "newPrice": 4.8,
-      "photoId": "84939",
-      "positionType": 4,
+      "id": 366,
+      "name": "B.Fernandes",
+      "newPrice": 8.4,
+      "photoId": "141746",
+      "positionType": 3,
       "news": "",
-      "ownedBy": 1.2
+      "ownedBy": 15.1
     },
     {
       "id": 566,
       "name": "Strand Larsen",
-      "newPrice": 5.3,
+      "newPrice": 5.2,
       "photoId": "247412",
       "positionType": 4,
-      "news": "Groin Injury - 75% chance of playing",
-      "ownedBy": 3.6
+      "news": "",
+      "ownedBy": 3
     }
   ]
 }
