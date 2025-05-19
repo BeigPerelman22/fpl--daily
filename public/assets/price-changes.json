@@ -1,150 +1,23 @@
 {
-  "priceUps": [
-    {
-      "id": 54,
-      "name": "Rogers",
-      "newPrice": 5.8,
-      "photoId": "244850",
-      "positionType": 3,
-      "news": "",
-      "ownedBy": 26
-    },
-    {
-      "id": 58,
-      "name": "Watkins",
-      "newPrice": 9.1,
-      "photoId": "178301",
-      "positionType": 4,
-      "news": "",
-      "ownedBy": 25.5
-    },
-    {
-      "id": 106,
-      "name": "Schade",
-      "newPrice": 5.3,
-      "photoId": "513418",
-      "positionType": 3,
-      "news": "",
-      "ownedBy": 3.5
-    },
-    {
-      "id": 110,
-      "name": "Wissa",
-      "newPrice": 6.9,
-      "photoId": "216646",
-      "positionType": 4,
-      "news": "",
-      "ownedBy": 22.4
-    },
-    {
-      "id": 218,
-      "name": "Beto",
-      "newPrice": 4.9,
-      "photoId": "486385",
-      "positionType": 4,
-      "news": "",
-      "ownedBy": 4.6
-    },
-    {
-      "id": 235,
-      "name": "Pickford",
-      "newPrice": 5.2,
-      "photoId": "111234",
-      "positionType": 1,
-      "news": "",
-      "ownedBy": 16.8
-    },
-    {
-      "id": 306,
-      "name": "Vardy",
-      "newPrice": 5.4,
-      "photoId": "101668",
-      "positionType": 4,
-      "news": "",
-      "ownedBy": 6.2
-    },
-    {
-      "id": 422,
-      "name": "Aina",
-      "newPrice": 5.3,
-      "photoId": "159506",
-      "positionType": 2,
-      "news": "",
-      "ownedBy": 13.2
-    },
-    {
-      "id": 433,
-      "name": "Gibbs-White",
-      "newPrice": 6.5,
-      "photoId": "222531",
-      "positionType": 3,
-      "news": "",
-      "ownedBy": 7
-    }
-  ],
+  "priceUps": [],
   "priceDowns": [
     {
-      "id": 23,
-      "name": "Trossard",
-      "newPrice": 6.7,
-      "photoId": "116216",
-      "positionType": 3,
-      "news": "Hamstring injury - 75% chance of playing",
-      "ownedBy": 3.7
+      "id": 3,
+      "name": "Gabriel",
+      "newPrice": 6.1,
+      "photoId": "226597",
+      "positionType": 2,
+      "news": "Hamstring injury - Expected back 01 Jun",
+      "ownedBy": 12.3
     },
     {
-      "id": 70,
-      "name": "Kerkez",
-      "newPrice": 5.2,
-      "photoId": "544877",
+      "id": 436,
+      "name": "Murillo",
+      "newPrice": 4.7,
+      "photoId": "575476",
       "positionType": 2,
       "news": "",
-      "ownedBy": 17.1
-    },
-    {
-      "id": 71,
-      "name": "Kluivert",
-      "newPrice": 5.9,
-      "photoId": "222683",
-      "positionType": 3,
-      "news": "",
-      "ownedBy": 10.5
-    },
-    {
-      "id": 207,
-      "name": "Mateta",
-      "newPrice": 7.5,
-      "photoId": "231747",
-      "positionType": 4,
-      "news": "",
-      "ownedBy": 9.6
-    },
-    {
-      "id": 571,
-      "name": "Savinho",
-      "newPrice": 6,
-      "photoId": "510281",
-      "positionType": 3,
-      "news": "",
-      "ownedBy": 2.2
-    },
-    {
-      "id": 755,
-      "name": "Marmoush",
-      "newPrice": 7.4,
-      "photoId": "438234",
-      "positionType": 4,
-      "news": "",
-      "ownedBy": 22.2
-    },
-    {
-      "id": 418,
-      "name": "Trippier",
-      "newPrice": 5.6,
-      "photoId": "77794",
-      "positionType": 2,
-      "news": "Calf injury - 25% chance of playing",
-      "ownedBy": 5
+      "ownedBy": 4.4
     }
   ]
 }
