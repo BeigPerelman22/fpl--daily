@@ -38,7 +38,7 @@ export const FplPriceChangesVideo: React.FC = () => {
               extrapolateRight: "clamp",
             })
           }
-          src={staticFile("assets/audio/spring-energy.mp3")}
+          src={staticFile("assets/audio/music.mp3")}
         ></Audio>
       </Sequence>
 

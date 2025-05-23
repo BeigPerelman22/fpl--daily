@@ -1,23 +1,24 @@
 {
-  "priceUps": [],
-  "priceDowns": [
+  "priceUps": [
     {
-      "id": 3,
-      "name": "Gabriel",
-      "newPrice": 6.1,
-      "photoId": "226597",
-      "positionType": 2,
-      "news": "Hamstring injury - Expected back 01 Jun",
-      "ownedBy": 12.3
-    },
-    {
-      "id": 436,
-      "name": "Murillo",
-      "newPrice": 4.7,
-      "photoId": "575476",
+      "id": 44,
+      "name": "Konsa",
+      "newPrice": 4.5,
+      "photoId": "199798",
       "positionType": 2,
       "news": "",
-      "ownedBy": 4.4
+      "ownedBy": 8.8
+    }
+  ],
+  "priceDowns": [
+    {
+      "id": 74,
+      "name": "O.Dango",
+      "newPrice": 4.5,
+      "photoId": "533463",
+      "positionType": 3,
+      "news": "Groin Injury - Expected back 01 Jun",
+      "ownedBy": 1
     }
   ]
 }
