@@ -1,24 +1,78 @@
 {
   "priceUps": [
     {
-      "id": 44,
-      "name": "Konsa",
-      "newPrice": 4.5,
-      "photoId": "199798",
+      "id": 24,
+      "name": "White",
+      "newPrice": 6.2,
+      "photoId": "198869",
       "positionType": 2,
       "news": "",
-      "ownedBy": 8.8
+      "ownedBy": 3.3
+    },
+    {
+      "id": 70,
+      "name": "Kerkez",
+      "newPrice": 5.3,
+      "photoId": "544877",
+      "positionType": 2,
+      "news": "",
+      "ownedBy": 18.4
+    },
+    {
+      "id": 617,
+      "name": "Evanilson",
+      "newPrice": 5.9,
+      "photoId": "444102",
+      "positionType": 4,
+      "news": "",
+      "ownedBy": 5.4
+    },
+    {
+      "id": 395,
+      "name": "Burn",
+      "newPrice": 4.6,
+      "photoId": "78916",
+      "positionType": 2,
+      "news": "",
+      "ownedBy": 12.1
     }
   ],
   "priceDowns": [
     {
-      "id": 74,
-      "name": "O.Dango",
-      "newPrice": 4.5,
-      "photoId": "533463",
+      "id": 762,
+      "name": "M.Asensio",
+      "newPrice": 6,
+      "photoId": "174292",
       "positionType": 3,
-      "news": "Groin Injury - Expected back 01 Jun",
-      "ownedBy": 1
+      "news": "",
+      "ownedBy": 2.6
+    },
+    {
+      "id": 585,
+      "name": "I.Sarr",
+      "newPrice": 5.5,
+      "photoId": "232185",
+      "positionType": 3,
+      "news": "",
+      "ownedBy": 6.2
+    },
+    {
+      "id": 247,
+      "name": "Iwobi",
+      "newPrice": 5.4,
+      "photoId": "153133",
+      "positionType": 3,
+      "news": "",
+      "ownedBy": 5.3
+    },
+    {
+      "id": 556,
+      "name": "King",
+      "newPrice": 3.9,
+      "photoId": "138001",
+      "positionType": 1,
+      "news": "",
+      "ownedBy": 1.2
     }
   ]
 }
