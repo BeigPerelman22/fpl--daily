@@ -1,78 +1,105 @@
 {
   "priceUps": [
     {
-      "id": 24,
-      "name": "White",
-      "newPrice": 6.2,
-      "photoId": "198869",
-      "positionType": 2,
+      "id": 15,
+      "name": "Raya",
+      "newPrice": 5.6,
+      "photoId": "154561",
+      "positionType": 1,
       "news": "",
-      "ownedBy": 3.3
+      "ownedBy": 32.3
     },
     {
-      "id": 70,
-      "name": "Kerkez",
-      "newPrice": 5.3,
-      "photoId": "544877",
-      "positionType": 2,
+      "id": 16,
+      "name": "Rice",
+      "newPrice": 6.3,
+      "photoId": "204480",
+      "positionType": 3,
       "news": "",
-      "ownedBy": 18.4
+      "ownedBy": 4
     },
     {
-      "id": 617,
-      "name": "Evanilson",
-      "newPrice": 5.9,
-      "photoId": "444102",
+      "id": 17,
+      "name": "Saka",
+      "newPrice": 10.4,
+      "photoId": "223340",
+      "positionType": 3,
+      "news": "",
+      "ownedBy": 19.2
+    },
+    {
+      "id": 58,
+      "name": "Watkins",
+      "newPrice": 9.2,
+      "photoId": "178301",
       "positionType": 4,
       "news": "",
-      "ownedBy": 5.4
+      "ownedBy": 28.2
     },
     {
-      "id": 395,
-      "name": "Burn",
-      "newPrice": 4.6,
-      "photoId": "78916",
+      "id": 388,
+      "name": "Wan-Bissaka",
+      "newPrice": 4.5,
+      "photoId": "214590",
       "positionType": 2,
       "news": "",
-      "ownedBy": 12.1
+      "ownedBy": 6.2
     }
   ],
   "priceDowns": [
     {
-      "id": 762,
-      "name": "M.Asensio",
-      "newPrice": 6,
-      "photoId": "174292",
-      "positionType": 3,
-      "news": "",
-      "ownedBy": 2.6
-    },
-    {
-      "id": 585,
-      "name": "I.Sarr",
+      "id": 6,
+      "name": "J.Timber",
       "newPrice": 5.5,
-      "photoId": "232185",
-      "positionType": 3,
-      "news": "",
-      "ownedBy": 6.2
+      "photoId": "445122",
+      "positionType": 2,
+      "news": "Ankle injury - Expected back 01 Jun",
+      "ownedBy": 4.6
     },
     {
-      "id": 247,
-      "name": "Iwobi",
-      "newPrice": 5.4,
-      "photoId": "153133",
-      "positionType": 3,
-      "news": "",
-      "ownedBy": 5.3
+      "id": 18,
+      "name": "Saliba",
+      "newPrice": 6.4,
+      "photoId": "462424",
+      "positionType": 2,
+      "news": "Hamstring injury - Expected back 01 Jun",
+      "ownedBy": 27
     },
     {
-      "id": 556,
-      "name": "King",
-      "newPrice": 3.9,
-      "photoId": "138001",
-      "positionType": 1,
+      "id": 218,
+      "name": "Beto",
+      "newPrice": 4.8,
+      "photoId": "486385",
+      "positionType": 4,
+      "news": "",
+      "ownedBy": 4.1
+    },
+    {
+      "id": 630,
+      "name": "O'Shea",
+      "newPrice": 3.8,
+      "photoId": "216616",
+      "positionType": 2,
       "news": "",
       "ownedBy": 1.2
+    },
+    {
+      "id": 345,
+      "name": "De Bruyne",
+      "newPrice": 9.5,
+      "photoId": "61366",
+      "positionType": 3,
+      "news": "",
+      "ownedBy": 12.8
+    },
+    {
+      "id": 541,
+      "name": "Cunha",
+      "newPrice": 7,
+      "photoId": "430871",
+      "positionType": 4,
+      "news": "",
+      "ownedBy": 13.8
     }
   ]
 }
