@@ -1,24 +1,4 @@
 {
-  "priceUps": [
-    {
-      "id": 44,
-      "name": "Konsa",
-      "newPrice": 4.5,
-      "photoId": "199798",
-      "positionType": 2,
-      "news": "",
-      "ownedBy": 8.8
-    }
-  ],
-  "priceDowns": [
-    {
-      "id": 74,
-      "name": "O.Dango",
-      "newPrice": 4.5,
-      "photoId": "533463",
-      "positionType": 3,
-      "news": "Groin Injury - Expected back 01 Jun",
-      "ownedBy": 1
-    }
-  ]
+  "priceUps": [],
+  "priceDowns": []
 }
