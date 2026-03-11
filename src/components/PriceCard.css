@@ -3,7 +3,7 @@
     border-radius: 15px;
     min-width: 300px;
     font-size: 40px;
-    font-family: ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", Segoe UI Symbol, "Noto Color Emoji";
+    font-family: Inter, sans-serif;
     display: flex;
     width: 100%;
     align-items: center;
@@ -29,12 +29,18 @@
     align-items: center;
 }
 
+.club-badge {
+    width: 40px;
+    height: 40px;
+}
+
 .player-image {
-    width: 120px;
-    height: 150px;
-    object-fit: cover;
-    border-radius: 8px;
+    width: 180px;
+    height: 180px;
+    object-fit: contain;
+    border-radius: 30px;
     box-shadow: 0 0 5px rgba(255, 255, 255, 0.5);
+    background-color: hsl(220 15% 92%);
 }
 
 .player-info {
@@ -45,13 +51,14 @@
 }
 
 .player-name {
+    font-family: "Space Grotesk", sans-serif;;
     font-weight: 500;
 }
 
 .player-meta {
     display: flex;
     align-items: center;
-    gap: 5px;
+    gap: 25px;
 }
 
 .position-badge {
@@ -66,7 +73,7 @@
     color: inherit;
 }
 
-.ownership-info {
+.price-info {
     display: flex;
     flex-direction: column;
 }

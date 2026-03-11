@@ -8,4 +8,5 @@ export interface ApiPlayer {
   news: string;
   web_name: string;
   selected_by_percent: string;
+  team_code: number;
 }

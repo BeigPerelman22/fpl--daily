@@ -1,6 +1,7 @@
 import fetch from "node-fetch";
 import fs from "fs";
 import { ApiPlayer } from "../models/ApiPlayer";
+import { TeamModel } from "../models/team.model";
 
 const API_URL = "https://fantasy.premierleague.com/api/bootstrap-static/";
 const OUTPUT_FILE = "public/assets/price-changes.json";
@@ -8,15 +9,17 @@ const CACHE_FILE = "src/data/yesterday-players.json";
 
 async function getPriceChanges() {
   const res = await fetch(API_URL);
-  const data: { elements: ApiPlayer[] } = (await res.json()) as {
+  const data: { elements: ApiPlayer[], teams: TeamModel[] } = (await res.json()) as {
     elements: ApiPlayer[];
+    teams: TeamModel[];
   };
   const players: ApiPlayer[] = data.elements;
+  const teams: TeamModel[] = data.teams;
 
   const today: Record<number, number> = {};
-  for (const p of players) {
-    today[p.id] = p.now_cost;
-  }
+  // for (const p of players) {
+  //   today[p.id] = p.now_cost;
+  // }
 
   let yesterday: Record<number, number> = {};
   if (fs.existsSync(CACHE_FILE)) {
@@ -27,6 +30,8 @@ async function getPriceChanges() {
   const priceDowns = [];
 
   for (const p of players) {
+    today[p.id] = p.now_cost;
+
     const oldPrice = yesterday[p.id];
     const newPrice = p.now_cost;
     if (oldPrice != null && newPrice !== oldPrice) {
@@ -37,7 +42,9 @@ async function getPriceChanges() {
         photoId: p.photo.replace(".jpg", ""),
         positionType: p.element_type,
         news: p.news,
-        ownedBy: +p.selected_by_percent
+        ownedBy: +p.selected_by_percent,
+        teamId: p.team_code,
+        teamName: teams.find(team => team.code === p.team_code)?.name
       };
       if (newPrice > oldPrice) priceUps.push(entry);
       else priceDowns.push(entry);
