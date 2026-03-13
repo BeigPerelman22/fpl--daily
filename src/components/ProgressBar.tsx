@@ -21,8 +21,8 @@ export const ProgressBar: React.FC<ProgressBarProps> = ({ introDurationInFrames 
         position: 'absolute',
         top: 0,
         left: 0,
-        height: '10px',
-        backgroundColor: '#00A650',
+        height: '8px',
+        backgroundColor: '#00FF87',
         width: `${progress}%`,
       }}
     />

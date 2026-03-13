@@ -1,15 +1,7 @@
 import { PriceList } from "./PriceList";
 import { UpPriceListDuration } from "./UpPriceList";
-import {
-  chunkPlayers,
-  ChunksDuration,
-  PlayerGroupDuration,
-} from "../lib/utils";
-import {
-  BASE_START_TIME_SECONDS,
-  PLAYERS_PER_CHUNK,
-  SECONDS_PER_PLAYER,
-} from "../lib/VideoConstants";
+import { chunkPlayers, ChunksDuration, PlayerGroupDuration } from "../lib/utils";
+import { BASE_START_TIME_SECONDS, PLAYERS_PER_CHUNK, SECONDS_PER_PLAYER } from "../lib/VideoConstants";
 import priceChange from "../../public/assets/price-changes.json";
 import { PriceChange } from "../models/price-changes";
 
@@ -22,26 +14,21 @@ export const DownPriceListDuration = Math.min(
   ChunksDuration(chunks),
 );
 
-export const DownPriceList = () => {
-  return (
-    <>
-      {chunks.map((players, index) => {
-        const groupDuration = PlayerGroupDuration(chunks, index);
-        const startTime =
-          BASE_START_TIME_SECONDS + UpPriceListDuration + index * groupDuration;
+export const DownPriceList = () => (
+  <>
+    {chunks.map((players, index) => {
+      const groupDuration = PlayerGroupDuration(chunks, index);
+      const startTime =
+        BASE_START_TIME_SECONDS + UpPriceListDuration + index * groupDuration;
 
-        return (
-          <PriceList
-            key={index}
-            title="Price Fallers"
-            players={players}
-            direction="down"
-            color="white"
-            startTimeInSeconds={startTime}
-            arrowSvg="/assets/images/red-arrow.svg"
-          />
-        );
-      })}
-    </>
-  );
-};
+      return (
+        <PriceList
+          key={index}
+          players={players}
+          direction="down"
+          startTimeInSeconds={startTime}
+        />
+      );
+    })}
+  </>
+);
