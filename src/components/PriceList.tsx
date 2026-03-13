@@ -1,14 +1,9 @@
-import {
-  Img,
-  interpolate,
-  Sequence,
-  staticFile,
-  useCurrentFrame,
-  useVideoConfig,
-} from "remotion";
-import { PriceCard } from "./PriceCard";
+import React from "react";
+import { interpolate, Sequence, useCurrentFrame, useVideoConfig } from "remotion";
 import { PlayerModel } from "../models/player.model";
-import "./PriceList.css";
+import { SectionTitle } from "./ui/SectionTitle";
+import { PriceCardHorizontal } from "./PriceCardHorizontal";
+import { PriceCardVertical } from "./PriceCardVertical";
 import {
   FADE_IN_DURATION_FRAMES,
   MAX_GROUP_DURATION_SECONDS,
@@ -16,21 +11,17 @@ import {
 } from "../lib/VideoConstants";
 
 type Props = {
-  title: string;
   players: PlayerModel[];
   direction: "up" | "down";
-  color: string;
   startTimeInSeconds: number;
-  arrowSvg: string;
+  variant?: "horizontal" | "vertical";
 };
 
 export const PriceList: React.FC<Props> = ({
-  title,
   players,
   direction,
-  color,
   startTimeInSeconds,
-  arrowSvg,
+  variant = "horizontal",
 }) => {
   const frame = useCurrentFrame();
   const { fps } = useVideoConfig();
@@ -46,24 +37,40 @@ export const PriceList: React.FC<Props> = ({
     frame,
     [sequenceStart, sequenceStart + FADE_IN_DURATION_FRAMES],
     [0, 1],
-    {
-      extrapolateLeft: "clamp",
-      extrapolateRight: "clamp",
-    },
+    { extrapolateLeft: "clamp", extrapolateRight: "clamp" },
   );
 
   return (
     <Sequence from={sequenceStart} durationInFrames={totalDurationInFrames}>
-      <div className="price-list-container">
-        <div className="price-list-title" style={{ color, opacity }}>
-          <Img src={staticFile(arrowSvg)} />
-          {title}
-          <Img src={staticFile(arrowSvg)} />
-        </div>
-        <div className="price-list-content" style={{ opacity }}>
-          {players.map((player, i) => (
-            <PriceCard key={i} player={player} direction={direction} />
-          ))}
+      <div
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+          width: "100%",
+          opacity,
+        }}
+      >
+        <SectionTitle direction={direction} />
+
+        <div
+          style={{
+            display: "flex",
+            flexDirection: variant === "vertical" ? "row" : "column",
+            flexWrap: "wrap",
+            justifyContent: "center",
+            alignItems: variant === "vertical" ? "flex-start" : "stretch",
+            gap: variant === "vertical" ? 20 : 0,
+            width: "100%",
+          }}
+        >
+          {players.map((player, i) =>
+            variant === "vertical" ? (
+              <PriceCardVertical key={i} player={player} direction={direction} />
+            ) : (
+              <PriceCardHorizontal key={i} player={player} direction={direction} />
+            ),
+          )}
         </div>
       </div>
     </Sequence>
