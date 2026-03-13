@@ -1,7 +1,7 @@
+import React from "react";
 import {
   AbsoluteFill,
   Audio,
-  Img,
   interpolate,
   Sequence,
   staticFile,
@@ -28,39 +28,27 @@ export const FplPriceChangesVideo: React.FC = () => {
         flexDirection: "column",
         padding: "40px",
         textAlign: "center",
+        background: "radial-gradient(ellipse at center, #4a0057 0%, #37003C 60%, #1a0022 100%)",
       }}
     >
-      <ProgressBar introDurationInFrames={fps * BASE_START_TIME_SECONDS}/>
+      <ProgressBar introDurationInFrames={fps * BASE_START_TIME_SECONDS} />
+
       <Sequence from={fps * BASE_START_TIME_SECONDS}>
-        <Audio startFrom={fps * 15}
+        <Audio
+          startFrom={fps * 2}
           volume={(frame) =>
-            interpolate(frame, [0, fadeInFrames], [0.1, 0.5], {
+            interpolate(frame, [0, fadeInFrames], [0.1, 0.45], {
               extrapolateRight: "clamp",
             })
           }
-          src={staticFile("assets/audio/music.mp3")}
-        ></Audio>
+          src={staticFile("assets/audio/disco-funk.mp3")}
+        />
       </Sequence>
 
-      <Intro></Intro>
-      <Sequence from={fps * BASE_START_TIME_SECONDS}>
-        <Img
-          src={staticFile("assets/images/new-background.png")}
-          style={{
-            position: "absolute",
-            top: 0,
-            left: 0,
-            width: "100%",
-            height: "100%",
-            objectFit: "cover",
-            zIndex: -1,
-            filter: "blur(10px)",
-          }}
-        ></Img>
-      </Sequence>
-      <DownPriceList></DownPriceList>
-      <UpPriceList></UpPriceList>
-      <Outro></Outro>
+      <Intro />
+      <DownPriceList />
+      <UpPriceList />
+      <Outro />
     </AbsoluteFill>
   );
 };
