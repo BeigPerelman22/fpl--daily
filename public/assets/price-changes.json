@@ -23,17 +23,5 @@
       "teamName": "Sunderland"
     }
   ],
-  "priceDowns": [
-    {
-      "id": 670,
-      "name": "Roefs",
-      "newPrice": 4.8,
-      "photoId": "498016",
-      "positionType": 1,
-      "news": "Hamstring injury - Expected back 22 Mar",
-      "ownedBy": 9.7,
-      "teamId": 56,
-      "teamName": "Sunderland"
-    }
-  ]
+  "priceDowns": []
 }
