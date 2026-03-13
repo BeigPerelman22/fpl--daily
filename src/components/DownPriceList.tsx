@@ -27,6 +27,7 @@ export const DownPriceList = () => (
           players={players}
           direction="down"
           startTimeInSeconds={startTime}
+          variant={"vertical"}
         />
       );
     })}

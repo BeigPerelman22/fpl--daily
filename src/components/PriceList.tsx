@@ -47,7 +47,9 @@ export const PriceList: React.FC<Props> = ({
           display: "flex",
           flexDirection: "column",
           alignItems: "center",
+          justifyContent: "center",
           width: "100%",
+          height: "100%",
           opacity,
         }}
       >

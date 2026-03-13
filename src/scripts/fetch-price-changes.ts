@@ -17,9 +17,6 @@ async function getPriceChanges() {
   const teams: TeamModel[] = data.teams;
 
   const today: Record<number, number> = {};
-  // for (const p of players) {
-  //   today[p.id] = p.now_cost;
-  // }
 
   let yesterday: Record<number, number> = {};
   if (fs.existsSync(CACHE_FILE)) {
