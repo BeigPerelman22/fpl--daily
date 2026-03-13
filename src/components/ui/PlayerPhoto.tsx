@@ -15,7 +15,7 @@ export const PlayerPhoto: React.FC<Props> = ({ photoId, name, size = 160 }) => {
       src={
         hasError
           ? staticFile("assets/player-placeholder.svg")
-          : `https://resources.premierleague.com/premierleague/photos/players/110x140/p${photoId}.png`
+          : `https://resources.premierleague.com/premierleague25/photos/players/110x140/${photoId}.png`
       }
       alt={name}
       onError={() => setHasError(true)}

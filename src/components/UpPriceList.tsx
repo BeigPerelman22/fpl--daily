@@ -25,6 +25,7 @@ export const UpPriceList = () => (
           players={group}
           direction="up"
           startTimeInSeconds={startTime}
+          variant={"vertical"}
         />
       );
     })}

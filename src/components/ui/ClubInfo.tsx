@@ -15,7 +15,7 @@ export const ClubInfo: React.FC<Props> = ({ teamId, teamName }) => {
         src={
           hasError
             ? staticFile("assets/club-placeholder.svg")
-            : `https://resources.premierleague.com/premierleague/badges/rb/t${teamId}.svg`
+            : `https://resources.premierleague.com/premierleague25/badges-alt/${teamId}.svg`
         }
         alt={teamName}
         onError={() => setHasError(true)}
