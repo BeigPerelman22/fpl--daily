@@ -1,27 +1,50 @@
 {
   "priceUps": [
     {
-      "id": 661,
-      "name": "Ekitiké",
-      "newPrice": 9.2,
-      "photoId": "510663",
-      "positionType": 4,
+      "id": 101,
+      "name": "Kelleher",
+      "newPrice": 4.8,
+      "photoId": "200720",
+      "positionType": 1,
       "news": "",
-      "ownedBy": 34.2,
-      "teamId": 14,
-      "teamName": "Liverpool"
-    },
-    {
-      "id": 531,
-      "name": "Ballard",
-      "newPrice": 4.7,
-      "photoId": "223827",
-      "positionType": 2,
-      "news": "",
-      "ownedBy": 3.8,
-      "teamId": 56,
-      "teamName": "Sunderland"
+      "ownedBy": 12.8,
+      "teamId": 94,
+      "teamName": "Brentford"
     }
   ],
-  "priceDowns": []
+  "priceDowns": [
+    {
+      "id": 20,
+      "name": "Trossard",
+      "newPrice": 6.6,
+      "photoId": "116216",
+      "positionType": 3,
+      "news": "Knock - 75% chance of playing",
+      "ownedBy": 0.9,
+      "teamId": 3,
+      "teamName": "Arsenal"
+    },
+    {
+      "id": 220,
+      "name": "Sánchez",
+      "newPrice": 4.8,
+      "photoId": "215059",
+      "positionType": 1,
+      "news": "",
+      "ownedBy": 13.4,
+      "teamId": 8,
+      "teamName": "Chelsea"
+    },
+    {
+      "id": 237,
+      "name": "Enzo",
+      "newPrice": 6.6,
+      "photoId": "448047",
+      "positionType": 3,
+      "news": "",
+      "ownedBy": 15.7,
+      "teamId": 8,
+      "teamName": "Chelsea"
+    }
+  ]
 }
