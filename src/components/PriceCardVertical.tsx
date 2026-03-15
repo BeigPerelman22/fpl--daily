@@ -38,5 +38,21 @@ export const PriceCardVertical: React.FC<Props> = ({ player, direction }) => (
     </div>
     <ClubInfo teamId={player.teamId} teamName={player.teamName} />
     <PriceDisplay newPrice={player.newPrice} direction={direction} />
+    {player.commentary && (
+      <span
+        style={{
+          color: "#FFFFFF",
+          fontWeight: 400,
+          fontSize: 32,
+          fontFamily: "Poppins, sans-serif",
+          textAlign: "center",
+          fontStyle: "italic",
+          maxWidth: 800,
+          marginTop: 12,
+        }}
+      >
+        {player.news}
+      </span>
+    )}
   </div>
 );

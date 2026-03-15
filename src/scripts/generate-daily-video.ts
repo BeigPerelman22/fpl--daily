@@ -19,7 +19,35 @@ function run(): Promise<void> {
     );
   })
     .then(() => {
-      console.log("Fetching price changes...");
+      console.log("Adding commentary...");
+      return new Promise<void>((resolve, reject) => {
+        exec("npx ts-node src/scripts/add-commentary.ts", (error, stdout, stderr) => {
+          if (error) {
+            console.error(`Error adding commentary: ${stderr}`);
+            reject(error);
+            return;
+          }
+          console.log(stdout);
+          resolve();
+        });
+      });
+    })
+    .then(() => {
+      console.log("Generating TTS audio...");
+      return new Promise<void>((resolve, reject) => {
+        exec("npx ts-node src/scripts/generate-tts.ts", (error, stdout, stderr) => {
+          if (error) {
+            console.error(`Error generating TTS: ${stderr}`);
+            reject(error);
+            return;
+          }
+          console.log(stdout);
+          resolve();
+        });
+      });
+    })
+    .then(() => {
+      console.log("Building project...");
       return new Promise<void>((resolve, reject) => {
         exec("npm run build", (error, stdout, stderr) => {
           if (error) {

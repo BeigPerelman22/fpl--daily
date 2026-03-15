@@ -7,5 +7,6 @@ export interface PlayerModel  {
   photoId: string,
   positionType: number,
   news: string,
-  ownedBy: number
+  ownedBy: number,
+  commentary?: string
 }

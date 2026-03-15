@@ -46,6 +46,20 @@ export const PriceCardHorizontal: React.FC<Props> = ({ player, direction }) => (
         {player.name}
       </span>
       <ClubInfo teamId={player.teamId} teamName={player.teamName} />
+      {player.commentary && (
+        <span
+          style={{
+            color: "#FFFFFF",
+            fontWeight: 400,
+            fontSize: 24,
+            fontFamily: "Poppins, sans-serif",
+            fontStyle: "italic",
+            marginTop: 8,
+          }}
+        >
+          {player.commentary}
+        </span>
+      )}
     </div>
 
     {/* Right: price */}

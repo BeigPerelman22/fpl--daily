@@ -37,7 +37,7 @@ export const FplPriceChangesVideo: React.FC = () => {
         <Audio
           startFrom={fps * 2}
           volume={(frame) =>
-            interpolate(frame, [0, fadeInFrames], [0.1, 0.45], {
+            interpolate(frame, [0, fadeInFrames], [0.1, 0.1], {
               extrapolateRight: "clamp",
             })
           }
