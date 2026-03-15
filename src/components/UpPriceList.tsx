@@ -1,33 +1,58 @@
+import React from "react";
+import { AbsoluteFill, Sequence, useVideoConfig } from "remotion";
 import { PriceList } from "./PriceList";
-import { chunkPlayers, ChunksDuration, PlayerGroupDuration } from "../lib/utils";
-import { BASE_START_TIME_SECONDS, PLAYERS_PER_CHUNK, SECONDS_PER_PLAYER } from "../lib/VideoConstants";
+import { SectionTitle } from "./ui/SectionTitle";
+import { chunkPlayers } from "../lib/utils";
+import {
+  BASE_START_TIME_SECONDS,
+  PLAYERS_PER_CHUNK,
+  SECONDS_PER_PLAYER,
+} from "../lib/VideoConstants";
 import { PriceChange } from "../models/price-changes";
 import priceChange from "../../public/assets/price-changes.json";
 
 const priceChanges: PriceChange = priceChange;
+const players = priceChanges.priceUps;
+const chunks = chunkPlayers(players, PLAYERS_PER_CHUNK);
 
-const chunks = chunkPlayers(priceChanges.priceUps, PLAYERS_PER_CHUNK);
+export const UpPriceListDuration =
+  players.length > 0 ? players.length * SECONDS_PER_PLAYER : 0;
 
-export const UpPriceListDuration = Math.min(
-  priceChanges.priceUps.length * SECONDS_PER_PLAYER,
-  ChunksDuration(chunks),
-);
+export const UpPriceList = () => {
+  const { fps } = useVideoConfig();
+  if (players.length === 0) return null;
 
-export const UpPriceList = () => (
-  <>
-    {chunks.map((group, index) => {
-      const groupDuration = PlayerGroupDuration(chunks, index);
-      const startTime = BASE_START_TIME_SECONDS + index * groupDuration;
+  return (
+    <>
+      {/* Title persists for the full section */}
+      <Sequence
+        from={fps * BASE_START_TIME_SECONDS}
+        durationInFrames={fps * UpPriceListDuration}
+      >
+        <AbsoluteFill
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+            justifyContent: "flex-start",
+            paddingTop: 80,
+            pointerEvents: "none",
+          }}
+        >
+          <SectionTitle direction="up" />
+        </AbsoluteFill>
+      </Sequence>
 
-      return (
+      {/* One card per player, slides in independently */}
+      {chunks.map((group, index) => (
         <PriceList
           key={index}
           players={group}
           direction="up"
-          startTimeInSeconds={startTime}
-          variant={"vertical"}
+          startTimeInSeconds={BASE_START_TIME_SECONDS + index * SECONDS_PER_PLAYER}
+          variant="vertical"
         />
-      );
-    })}
-  </>
-);
+      ))}
+    </>
+  );
+};

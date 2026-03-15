@@ -21,18 +21,18 @@ export const PriceCardVertical: React.FC<Props> = ({ player, direction }) => (
       flexDirection: "column",
       alignItems: "center",
       backgroundColor: "#1C0626",
-      borderRadius: 16,
-      borderTop: `4px solid ${topBorderColor(direction)}`,
-      padding: "24px 20px",
-      width: 460,
-      gap: 12,
+      borderRadius: 32,
+      borderTop: `6px solid ${topBorderColor(direction)}`,
+      padding: "48px 40px",
+      width: 960,
+      gap: 24,
     }}
   >
-    <PlayerPhoto photoId={player.photoId} name={player.name} size={200} />
-    <span style={{ color: "#FFFFFF", fontWeight: 600, fontSize: 34, fontFamily: "Space Grotesk, sans-serif", textAlign: "center" }}>
+    <PlayerPhoto photoId={player.photoId} name={player.name} size={440} />
+    <span style={{ color: "#FFFFFF", fontWeight: 600, fontSize: 68, fontFamily: "Space Grotesk, sans-serif", textAlign: "center" }}>
       {player.name}
     </span>
-    <div style={{ display: "flex", alignItems: "center", gap: 14 }}>
+    <div style={{ display: "flex", alignItems: "center", gap: 20 }}>
       <PositionBadge positionType={player.positionType} />
       <OwnershipBadge ownedBy={player.ownedBy} />
     </div>

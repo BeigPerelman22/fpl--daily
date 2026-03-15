@@ -1,14 +1,17 @@
 import React from "react";
-import { interpolate, Sequence, useCurrentFrame, useVideoConfig } from "remotion";
+import {
+  Audio,
+  interpolate,
+  Sequence,
+  spring,
+  staticFile,
+  useCurrentFrame,
+  useVideoConfig,
+} from "remotion";
 import { PlayerModel } from "../models/player.model";
-import { SectionTitle } from "./ui/SectionTitle";
 import { PriceCardHorizontal } from "./PriceCardHorizontal";
 import { PriceCardVertical } from "./PriceCardVertical";
-import {
-  FADE_IN_DURATION_FRAMES,
-  MAX_GROUP_DURATION_SECONDS,
-  SECONDS_PER_PLAYER,
-} from "../lib/VideoConstants";
+import { FADE_IN_DURATION_FRAMES, MAX_GROUP_DURATION_SECONDS, SECONDS_PER_PLAYER } from "../lib/VideoConstants";
 
 type Props = {
   players: PlayerModel[];
@@ -33,15 +36,35 @@ export const PriceList: React.FC<Props> = ({
   const sequenceStart = fps * startTimeInSeconds;
   const totalDurationInFrames = Math.ceil(durationInSeconds * fps);
 
+  const localFrame = frame - sequenceStart;
+
   const opacity = interpolate(
-    frame,
-    [sequenceStart, sequenceStart + FADE_IN_DURATION_FRAMES],
+    localFrame,
+    [0, FADE_IN_DURATION_FRAMES],
     [0, 1],
     { extrapolateLeft: "clamp", extrapolateRight: "clamp" },
   );
 
+  const slideX = interpolate(
+    localFrame,
+    [0, FADE_IN_DURATION_FRAMES],
+    [80, 0],
+    { extrapolateLeft: "clamp", extrapolateRight: "clamp" },
+  );
+
+  const cardScale = spring({
+    frame: localFrame,
+    fps,
+    config: { damping: 18, stiffness: 120, mass: 0.8 },
+    durationInFrames: FADE_IN_DURATION_FRAMES,
+  });
+
   return (
     <Sequence from={sequenceStart} durationInFrames={totalDurationInFrames}>
+      <Audio
+        src={staticFile("assets/audio/mouse-click-290204.mp3")}
+        volume={0.5}
+      />
       <div
         style={{
           display: "flex",
@@ -51,29 +74,16 @@ export const PriceList: React.FC<Props> = ({
           width: "100%",
           height: "100%",
           opacity,
+          transform: `translateX(${slideX}px) scale(${cardScale})`,
         }}
       >
-        <SectionTitle direction={direction} />
-
-        <div
-          style={{
-            display: "flex",
-            flexDirection: variant === "vertical" ? "row" : "column",
-            flexWrap: "wrap",
-            justifyContent: "center",
-            alignItems: variant === "vertical" ? "flex-start" : "stretch",
-            gap: variant === "vertical" ? 20 : 0,
-            width: "100%",
-          }}
-        >
-          {players.map((player, i) =>
-            variant === "vertical" ? (
-              <PriceCardVertical key={i} player={player} direction={direction} />
-            ) : (
-              <PriceCardHorizontal key={i} player={player} direction={direction} />
-            ),
-          )}
-        </div>
+        {players.map((player, i) =>
+          variant === "vertical" ? (
+            <PriceCardVertical key={i} player={player} direction={direction} />
+          ) : (
+            <PriceCardHorizontal key={i} player={player} direction={direction} />
+          ),
+        )}
       </div>
     </Sequence>
   );
