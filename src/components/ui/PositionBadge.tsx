@@ -22,9 +22,9 @@ export const PositionBadge: React.FC<Props> = ({ positionType }) => {
         backgroundColor: color,
         color: "#1C0626",
         fontWeight: 700,
-        fontSize: 22,
-        borderRadius: 8,
-        padding: "4px 14px",
+        fontSize: 34,
+        borderRadius: 12,
+        padding: "8px 24px",
         letterSpacing: 1,
       }}
     >
