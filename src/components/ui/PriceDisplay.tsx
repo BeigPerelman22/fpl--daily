@@ -14,15 +14,15 @@ export const PriceDisplay: React.FC<Props> = ({ newPrice, direction }) => {
     : parseFloat((newPrice + 0.1).toFixed(1));
 
   return (
-    <div style={{ display: "flex", flexDirection: "column", alignItems: "flex-end", gap: 4 }}>
-      <span style={{ color: accentColor, fontSize: 22, display: "flex", alignItems: "center", gap: 6 }}>
+    <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: 4 }}>
+      <span style={{ color: accentColor, fontSize: 38, display: "flex", alignItems: "center", gap: 8 }}>
         {isUp ? <FaArrowTrendUp /> : <FaArrowTrendDown />}
         {isUp ? "+0.1m" : "-0.1m"}
       </span>
-      <span style={{ color: "#FFFFFF", fontWeight: 700, fontSize: 42 }}>
+      <span style={{ color: "#FFFFFF", fontWeight: 700, fontSize: 80 }}>
         £{newPrice}m
       </span>
-      <span style={{ color: "#9E9E9E", fontSize: 28, textDecoration: "line-through" }}>
+      <span style={{ color: "#9E9E9E", fontSize: 50, textDecoration: "line-through" }}>
         £{oldPrice}m
       </span>
     </div>

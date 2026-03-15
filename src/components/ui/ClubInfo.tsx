@@ -10,7 +10,7 @@ export const ClubInfo: React.FC<Props> = ({ teamId, teamName }) => {
   const [hasError, setHasError] = useState(false);
 
   return (
-    <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
+    <div style={{ display: "flex", alignItems: "center", gap: 16 }}>
       <Img
         src={
           hasError
@@ -19,9 +19,9 @@ export const ClubInfo: React.FC<Props> = ({ teamId, teamName }) => {
         }
         alt={teamName}
         onError={() => setHasError(true)}
-        style={{ width: 36, height: 36 }}
+        style={{ width: 56, height: 56 }}
       />
-      <span style={{ color: "#9E9E9E", fontSize: 26 }}>{teamName}</span>
+      <span style={{ color: "#9E9E9E", fontSize: 40 }}>{teamName}</span>
     </div>
   );
 };
