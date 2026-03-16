@@ -1,5 +1,5 @@
 import React from "react";
-import { interpolate, Sequence, spring, useCurrentFrame, useVideoConfig } from "remotion";
+import { Audio, interpolate, Sequence, spring, staticFile, useCurrentFrame, useVideoConfig } from "remotion";
 import { UpPriceListDuration } from "./UpPriceList";
 import { DownPriceListDuration } from "./DownPriceList";
 import { BASE_START_TIME_SECONDS } from "../lib/VideoConstants";
@@ -19,7 +19,8 @@ export const Outro: React.FC = () => {
   });
 
   return (
-    <Sequence from={fps * startTime} durationInFrames={fps * 2}>
+    <Sequence from={fps * startTime} durationInFrames={fps * 5}>
+      <Audio src={staticFile("assets/audio/outro_commentary.mp3")} />
       <div
         style={{
           fontFamily: "Poppins, sans-serif",
