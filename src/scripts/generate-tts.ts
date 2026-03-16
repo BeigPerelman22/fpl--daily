@@ -11,7 +11,7 @@ const OUTPUT_DIR = "public/assets/audio/commentary";
 
 // Charlie — casual, conversational, young. Great for YouTube/streamer content.
 // Swap this ID for any ElevenLabs voice at: https://elevenlabs.io/voice-library
-const VOICE_ID = "Cb8NLd0sUB8jI4MW2f9M";
+const VOICE_ID = "IKne3meq5aSn9XLyUdCD";
 
 async function generateTTS() {
   const apiKey = process.env.ELEVENLABS_API_KEY;
