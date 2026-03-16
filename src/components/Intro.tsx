@@ -28,6 +28,9 @@ export const Intro: React.FC = () => {
         <Audio src={staticFile("assets/audio/intro.mp3")} />
       </Sequence>
       <Sequence durationInFrames={fps * BASE_START_TIME_SECONDS}>
+        <Audio src={staticFile("assets/audio/intro_commentary.mp3")} />
+      </Sequence>
+      <Sequence durationInFrames={fps * BASE_START_TIME_SECONDS}>
         <AbsoluteFill style={{ zIndex: 0, opacity: logoOpacity }}>
           <Img
             src={staticFile("assets/images/logo.png")}
