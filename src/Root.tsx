@@ -3,7 +3,7 @@ import { FplPriceChangesVideo } from "./FplPriceChangesVideo";
 import React from "react";
 import { UpPriceListDuration } from "./components/UpPriceList";
 import { DownPriceListDuration } from "./components/DownPriceList";
-import { BASE_START_TIME_SECONDS } from "./lib/VideoConstants";
+import { BASE_START_TIME_SECONDS } from "./lib/video-constants";
 
 export const Root: React.FC = () => {
   const fps = 30;

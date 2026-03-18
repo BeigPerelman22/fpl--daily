@@ -1,6 +1,6 @@
 import React from "react";
 import { interpolate, Sequence, useCurrentFrame, useVideoConfig } from "remotion";
-import { BASE_START_TIME_SECONDS } from "../lib/VideoConstants";
+import { BASE_START_TIME_SECONDS } from "../lib/video-constants";
 
 type Props = {
   title: string;

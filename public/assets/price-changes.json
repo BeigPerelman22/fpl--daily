@@ -1,102 +1,42 @@
 {
   "priceUps": [
     {
-      "id": 136,
-      "name": "Thiago",
-      "newPrice": 7.3,
-      "photoId": "502500",
-      "positionType": 4,
-      "news": "",
-      "ownedBy": 35.6,
-      "teamId": 94,
-      "teamName": "Brentford",
-      "commentary": "Thiago rises to 7.3"
-    },
-    {
-      "id": 249,
-      "name": "João Pedro",
-      "newPrice": 7.8,
-      "photoId": "475168",
-      "positionType": 4,
-      "news": "",
-      "ownedBy": 49.8,
-      "teamId": 8,
-      "teamName": "Chelsea",
-      "commentary": "João Pedro rises to 7.8"
-    },
-    {
-      "id": 681,
-      "name": "Šeško",
-      "newPrice": 7.4,
-      "photoId": "485711",
-      "positionType": 4,
-      "news": "",
-      "ownedBy": 6.5,
-      "teamId": 1,
-      "teamName": "Man Utd",
-      "commentary": "Šeško rises to 7.4"
-    },
-    {
-      "id": 485,
-      "name": "Gordon",
-      "newPrice": 7.3,
-      "photoId": "232826",
+      "id": 449,
+      "name": "B.Fernandes",
+      "newPrice": 10.2,
+      "photoId": "141746",
       "positionType": 3,
       "news": "",
-      "ownedBy": 4.3,
-      "teamId": 4,
-      "teamName": "Newcastle",
-      "commentary": "Gordon rises to 7.3"
+      "ownedBy": 43.2,
+      "teamId": 1,
+      "teamName": "Man Utd",
+      "commentary": "B.Fernandes rises to 10.2"
     }
   ],
   "priceDowns": [
     {
-      "id": 430,
-      "name": "Haaland",
-      "newPrice": 14.5,
-      "photoId": "223094",
-      "positionType": 4,
-      "news": "",
-      "ownedBy": 57.9,
-      "teamId": 43,
-      "teamName": "Man City",
-      "commentary": "Haaland drops to 14.5"
-    },
-    {
-      "id": 351,
-      "name": "Gnonto",
-      "newPrice": 5.1,
-      "photoId": "492859",
+      "id": 417,
+      "name": "Cherki",
+      "newPrice": 6.3,
+      "photoId": "466052",
       "positionType": 3,
       "news": "",
-      "ownedBy": 0.1,
-      "teamId": 2,
-      "teamName": "Leeds",
-      "commentary": "Gnonto drops to 5.1"
+      "ownedBy": 7.1,
+      "teamId": 43,
+      "teamName": "Man City",
+      "commentary": "Cherki drops to 6.3"
     },
     {
-      "id": 691,
-      "name": "Calvert-Lewin",
-      "newPrice": 5.6,
-      "photoId": "177815",
-      "positionType": 4,
+      "id": 794,
+      "name": "Alleyne",
+      "newPrice": 3.9,
+      "photoId": "494307",
+      "positionType": 2,
       "news": "",
-      "ownedBy": 7.9,
-      "teamId": 2,
-      "teamName": "Leeds",
-      "commentary": "Calvert-Lewin drops to 5.6"
-    },
-    {
-      "id": 730,
-      "name": "Brobbey",
-      "newPrice": 5.3,
-      "photoId": "441264",
-      "positionType": 4,
-      "news": "",
-      "ownedBy": 0.6,
-      "teamId": 56,
-      "teamName": "Sunderland",
-      "commentary": "Brobbey drops to 5.3"
+      "ownedBy": 0,
+      "teamId": 43,
+      "teamName": "Man City",
+      "commentary": "Alleyne drops to 3.9"
     }
   ]
 }

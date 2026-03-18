@@ -11,7 +11,7 @@ import {
 } from "remotion";
 import { IntroTitle } from "./IntroTitle";
 import { getFormattedDate } from "../lib/utils";
-import { BASE_START_TIME_SECONDS } from "../lib/VideoConstants";
+import { BASE_START_TIME_SECONDS } from "../lib/video-constants";
 
 export const Intro: React.FC = () => {
   const { fps } = useVideoConfig();

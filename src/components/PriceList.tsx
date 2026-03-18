@@ -11,7 +11,7 @@ import {
 import { PlayerModel } from "../models/player.model";
 import { PriceCardHorizontal } from "./PriceCardHorizontal";
 import { PriceCardVertical } from "./PriceCardVertical";
-import { FADE_IN_DURATION_FRAMES, MAX_GROUP_DURATION_SECONDS, SECONDS_PER_PLAYER } from "../lib/VideoConstants";
+import { FADE_IN_DURATION_FRAMES, MAX_GROUP_DURATION_SECONDS, SECONDS_PER_PLAYER } from "../lib/video-constants";
 
 type Props = {
   players: PlayerModel[];

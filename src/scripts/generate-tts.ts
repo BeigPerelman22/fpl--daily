@@ -38,30 +38,30 @@ async function generateTTS() {
 
   console.log(`🎙️ Generating ElevenLabs TTS for ${playersWithCommentary.length} players...`);
 
-  // for (const player of playersWithCommentary) {
-  //   const outputPath = path.join(OUTPUT_DIR, `${player.id}.mp3`);
-  //
-  //   const audioStream = await client.textToSpeech.convert(VOICE_ID, {
-  //     text: player.commentary,
-  //     modelId: "eleven_turbo_v2_5",
-  //     outputFormat: "mp3_44100_128",
-  //     voiceSettings: {
-  //       stability: 0.35,
-  //       similarityBoost: 0.8,
-  //       style: 0.65,
-  //       useSpeakerBoost: true,
-  //     },
-  //   });
-  //
-  //   await new Promise<void>((resolve, reject) => {
-  //     const writeStream = fs.createWriteStream(outputPath);
-  //     Readable.from(audioStream as unknown as AsyncIterable<Uint8Array>).pipe(writeStream);
-  //     writeStream.on("finish", resolve);
-  //     writeStream.on("error", reject);
-  //   });
-  //
-  //   console.log(`✅ ${player.name} → ${outputPath}`);
-  // }
+  for (const player of playersWithCommentary) {
+    const outputPath = path.join(OUTPUT_DIR, `${player.id}.mp3`);
+
+    const audioStream = await client.textToSpeech.convert(VOICE_ID, {
+      text: player.commentary,
+      modelId: "eleven_turbo_v2_5",
+      outputFormat: "mp3_44100_128",
+      voiceSettings: {
+        stability: 0.35,
+        similarityBoost: 0.8,
+        style: 0.65,
+        useSpeakerBoost: true,
+      },
+    });
+
+    await new Promise<void>((resolve, reject) => {
+      const writeStream = fs.createWriteStream(outputPath);
+      Readable.from(audioStream as unknown as AsyncIterable<Uint8Array>).pipe(writeStream);
+      writeStream.on("finish", resolve);
+      writeStream.on("error", reject);
+    });
+
+    console.log(`✅ ${player.name} → ${outputPath}`);
+  }
 
   // Generate intro commentary
   const dateStr = new Date().toLocaleDateString("en-US", { month: "long", day: "numeric" });

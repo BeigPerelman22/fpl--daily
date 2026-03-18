@@ -10,7 +10,7 @@ import {
 import { UpPriceList } from "./components/UpPriceList";
 import { DownPriceList } from "./components/DownPriceList";
 import { Outro } from "./components/Outro";
-import { BASE_START_TIME_SECONDS } from "./lib/VideoConstants";
+import { BASE_START_TIME_SECONDS } from "./lib/video-constants";
 import { Intro } from "./components/Intro";
 import { ProgressBar } from "./components/ProgressBar";
 

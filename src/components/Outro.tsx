@@ -2,7 +2,7 @@ import React from "react";
 import { Audio, interpolate, Sequence, spring, staticFile, useCurrentFrame, useVideoConfig } from "remotion";
 import { UpPriceListDuration } from "./UpPriceList";
 import { DownPriceListDuration } from "./DownPriceList";
-import { BASE_START_TIME_SECONDS } from "../lib/VideoConstants";
+import { BASE_START_TIME_SECONDS } from "../lib/video-constants";
 import { YouTubeLogo } from "./YouTubeLogo";
 
 export const Outro: React.FC = () => {

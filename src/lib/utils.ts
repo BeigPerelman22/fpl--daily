@@ -2,7 +2,7 @@ import { PlayerModel } from "../models/player.model";
 import {
   MAX_GROUP_DURATION_SECONDS,
   SECONDS_PER_PLAYER,
-} from "./VideoConstants";
+} from "./video-constants";
 
 export const getFormattedDate = () => {
   const options: Intl.DateTimeFormatOptions = { month: "long", day: "numeric" };

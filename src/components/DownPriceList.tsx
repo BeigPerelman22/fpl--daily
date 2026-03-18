@@ -8,7 +8,7 @@ import {
   BASE_START_TIME_SECONDS,
   PLAYERS_PER_CHUNK,
   SECONDS_PER_PLAYER,
-} from "../lib/VideoConstants";
+} from "../lib/video-constants";
 import priceChange from "../../public/assets/price-changes.json";
 import { PriceChange } from "../models/price-changes";
 
