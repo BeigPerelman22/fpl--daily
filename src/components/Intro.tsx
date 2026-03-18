@@ -11,7 +11,7 @@ import {
 } from "remotion";
 import { IntroTitle } from "./IntroTitle";
 import { getFormattedDate } from "../lib/utils";
-import { BASE_START_TIME_SECONDS } from "../lib/VideoConstants";
+import { BASE_START_TIME_SECONDS, HOOK_DURATION_SECONDS } from "../lib/VideoConstants";
 
 export const Intro: React.FC = () => {
   const { fps } = useVideoConfig();
@@ -22,15 +22,21 @@ export const Intro: React.FC = () => {
     extrapolateRight: "clamp",
   });
 
+  const hookFrames = fps * HOOK_DURATION_SECONDS;
+  const logoDurationInFrames = fps * (BASE_START_TIME_SECONDS - HOOK_DURATION_SECONDS);
+
   return (
     <>
-      <Sequence durationInFrames={fps * 3}>
+      <Sequence from={0} durationInFrames={hookFrames}>
+        <Audio src={staticFile("assets/audio/hook.mp3")} />
+      </Sequence>
+      <Sequence from={hookFrames} durationInFrames={fps * 3}>
         <Audio src={staticFile("assets/audio/intro.mp3")} />
       </Sequence>
-      <Sequence durationInFrames={fps * BASE_START_TIME_SECONDS}>
+      <Sequence from={hookFrames} durationInFrames={logoDurationInFrames}>
         <Audio src={staticFile("assets/audio/intro_commentary.mp3")} />
       </Sequence>
-      <Sequence durationInFrames={fps * BASE_START_TIME_SECONDS}>
+      <Sequence from={hookFrames} durationInFrames={logoDurationInFrames}>
         <AbsoluteFill style={{ zIndex: 0, opacity: logoOpacity }}>
           <Img
             src={staticFile("assets/images/logo.png")}

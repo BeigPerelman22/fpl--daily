@@ -1,5 +1,6 @@
 export const SECONDS_PER_PLAYER = 3;
 export const MAX_GROUP_DURATION_SECONDS = 3;
 export const PLAYERS_PER_CHUNK = 1;
-export const BASE_START_TIME_SECONDS = 4;
+export const HOOK_DURATION_SECONDS = 1;
+export const BASE_START_TIME_SECONDS = 5;
 export const FADE_IN_DURATION_FRAMES = 15;
