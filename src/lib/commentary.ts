@@ -8,7 +8,7 @@ export function generateCommentary(
 }
 
 export function getIntroCommentaryText(date: string): string {
-  return `Hey FPL managers! Here are the FPL price changes for ${date}!`;
+  return `Hello FPL managers! Here are the player price changes for ${date}!`;
 }
 
 export const OUTRO_COMMENTARY_TEXT =
