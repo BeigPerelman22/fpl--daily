@@ -3,7 +3,11 @@ import path from "path";
 import { Readable } from "stream";
 import { ElevenLabsClient } from "@elevenlabs/elevenlabs-js";
 import dotenv from "dotenv";
-import { getIntroCommentaryText, OUTRO_COMMENTARY_TEXT } from "../lib/commentary";
+import {
+  getIntroCommentaryText,
+  OUTRO_COMMENTARY_TEXT,
+} from "../lib/commentary";
+import { PlayerModel } from "../models/player.model";
 
 dotenv.config();
 
@@ -11,18 +15,32 @@ const PRICE_CHANGES_FILE = "public/assets/price-changes.json";
 const OUTPUT_DIR = "public/assets/audio/commentary";
 const AUDIO_DIR = "public/assets/audio";
 
-// Charlie — casual, conversational, young. Great for YouTube/streamer content.
-// Swap this ID for any ElevenLabs voice at: https://elevenlabs.io/voice-library
-const VOICE_ID = "IKne3meq5aSn9XLyUdCD";
+// Free ElevenLabs pre-made male voices — American & British, YouTube/entertainment style
+const VOICES = [
+  { id: "IKne3meq5aSn9XLyUdCD", name: "Charlie" }, // American, casual/conversational
+  { id: "pNInz6obpgDQGcFmaJgB", name: "Adam" }, // American, deep narrator
+  // { id: "TX3LPaxmHKxFdv7VOQHJ", name: "Liam" }, // American, clean narrator
+  // { id: "VR6AewLTigWG4xSOukaG", name: "Arnold" }, // American, crisp
+  // { id: "onwK4e9ZLuTAKqWW03F9", name: "Daniel" }, // British, deep/authoritative
+  // { id: "CYw3kZ02Genyk0W6gQAr", name: "Dave" }, // British-Essex, conversational
+  // { id: "ODq5zmih8GrVes37Dx9R", name: "Patrick" }, // British male
+  // { id: "GBv7mTt0atIp3Br8iCZE", name: "Thomas" }, // British, calm
+];
+
+function getDailyVoice() {
+  const today = new Date();
+  const daySeed = today.getFullYear() * 10000 + (today.getMonth() + 1) * 100 + today.getDate();
+  return VOICES[daySeed % VOICES.length];
+}
 
 async function generateTTS() {
   const apiKey = process.env.ELEVENLABS_API_KEY;
   if (!apiKey) {
     throw new Error(
       "❌ ELEVENLABS_API_KEY env var is not set.\n" +
-      "Get your free key at https://elevenlabs.io and set it with:\n" +
-      "  set ELEVENLABS_API_KEY=your_key_here  (Windows)\n" +
-      "  export ELEVENLABS_API_KEY=your_key_here  (Mac/Linux)"
+        "Get your free key at https://elevenlabs.io and set it with:\n" +
+        "  set ELEVENLABS_API_KEY=your_key_here  (Windows)\n" +
+        "  export ELEVENLABS_API_KEY=your_key_here  (Mac/Linux)",
     );
   }
 
@@ -32,42 +50,48 @@ async function generateTTS() {
     fs.mkdirSync(OUTPUT_DIR, { recursive: true });
   }
 
+  const voice = getDailyVoice();
+  console.log(`🎤 Today's voice: ${voice.name} (${voice.id})`);
+
   const data = JSON.parse(fs.readFileSync(PRICE_CHANGES_FILE, "utf8"));
   const allPlayers = [...data.priceUps, ...data.priceDowns];
-  const playersWithCommentary = allPlayers.filter((p: any) => p.commentary);
+  const playersWithCommentary = allPlayers.filter(
+    (p: PlayerModel) => p.commentary,
+  );
 
-  console.log(`🎙️ Generating ElevenLabs TTS for ${playersWithCommentary.length} players...`);
+  console.log(`🎙️ Generating combined commentary for ${playersWithCommentary.length} players...`);
 
-  for (const player of playersWithCommentary) {
-    const outputPath = path.join(OUTPUT_DIR, `${player.id}.mp3`);
+  const combinedText = playersWithCommentary
+    .map((p: PlayerModel) => p.commentary)
+    .join(". ");
+  const combinedOutputPath = path.join(OUTPUT_DIR, "all-players.mp3");
 
-    const audioStream = await client.textToSpeech.convert(VOICE_ID, {
-      text: player.commentary,
-      modelId: "eleven_turbo_v2_5",
-      outputFormat: "mp3_44100_128",
-      voiceSettings: {
-        stability: 0.35,
-        similarityBoost: 0.8,
-        style: 0.65,
-        useSpeakerBoost: true,
-      },
-    });
+  const combinedStream = await client.textToSpeech.convert(voice.id, {
+    text: combinedText,
+    modelId: "eleven_turbo_v2_5",
+    outputFormat: "mp3_44100_128",
+    voiceSettings: {
+      stability: 0.35,
+      similarityBoost: 0.8,
+      style: 0.65,
+      useSpeakerBoost: true,
+    },
+  });
 
-    await new Promise<void>((resolve, reject) => {
-      const writeStream = fs.createWriteStream(outputPath);
-      Readable.from(audioStream as unknown as AsyncIterable<Uint8Array>).pipe(writeStream);
-      writeStream.on("finish", resolve);
-      writeStream.on("error", reject);
-    });
+  await new Promise<void>((resolve, reject) => {
+    const writeStream = fs.createWriteStream(combinedOutputPath);
+    Readable.from(combinedStream as unknown as AsyncIterable<Uint8Array>).pipe(writeStream);
+    writeStream.on("finish", resolve);
+    writeStream.on("error", reject);
+  });
 
-    console.log(`✅ ${player.name} → ${outputPath}`);
-  }
+  console.log(`✅ Combined players commentary → ${combinedOutputPath}`);
 
   // Generate intro commentary
   const dateStr = new Date().toLocaleDateString("en-US", { month: "long", day: "numeric" });
   const introText = getIntroCommentaryText(dateStr);
   console.log(`🎙️ Generating intro commentary: "${introText}"`);
-  const introStream = await client.textToSpeech.convert(VOICE_ID, {
+  const introStream = await client.textToSpeech.convert(voice.id, {
     text: introText,
     modelId: "eleven_turbo_v2_5",
     outputFormat: "mp3_44100_128",
@@ -83,7 +107,7 @@ async function generateTTS() {
 
   // Generate outro commentary
   console.log(`🎙️ Generating outro commentary: "${OUTRO_COMMENTARY_TEXT}"`);
-  const outroStream = await client.textToSpeech.convert(VOICE_ID, {
+  const outroStream = await client.textToSpeech.convert(voice.id, {
     text: OUTRO_COMMENTARY_TEXT,
     modelId: "eleven_turbo_v2_5",
     outputFormat: "mp3_44100_128",
