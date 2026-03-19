@@ -24,7 +24,7 @@ async function uploadVideo() {
   const youtube = google.youtube({ version: "v3", auth });
 
   const formattedDate = getFormattedDate();
-  const videoTitle = `FPL Price Changes ${formattedDate} – Latest Player Updates!`;
+  const videoTitle = `FPL PRICE CHANGES ${formattedDate} – Latest Player Updates!`;
   const videoDescription = `Here are all the Fantasy Premier League (FPL) price changes for ${formattedDate}, 2026!
 Find out which FPL players went up in price and who took a price drop overnight. Perfect info to help you plan your next transfer before the deadline! ⏰
 
