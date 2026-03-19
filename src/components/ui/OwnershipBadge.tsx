@@ -1,12 +1,12 @@
-import React from "react";
+import { type FC } from "react";
 import { FiUsers } from "react-icons/fi";
 
 type Props = {
   ownedBy: number;
 };
 
-export const OwnershipBadge: React.FC<Props> = ({ ownedBy }) => (
-  <span style={{ display: "flex", alignItems: "center", gap: 6, color: "#9E9E9E", fontSize: 38 }}>
+export const OwnershipBadge: FC<Props> = ({ ownedBy }) => (
+  <span className="flex items-center gap-[6px] text-text-muted text-[38px]">
     <FiUsers />
     {ownedBy}%
   </span>

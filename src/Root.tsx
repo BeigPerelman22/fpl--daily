@@ -1,17 +1,15 @@
+import { type FC } from "react";
 import { Composition } from "remotion";
 import { FplPriceChangesVideo } from "./FplPriceChangesVideo";
-import React from "react";
 import { UpPriceListDuration } from "./components/UpPriceList";
 import { DownPriceListDuration } from "./components/DownPriceList";
-import { BASE_START_TIME_SECONDS } from "./lib/video-constants";
+import { BASE_START_TIME_SECONDS, OUTRO_DURATION_SECONDS } from "./lib/video-constants";
 
-export const Root: React.FC = () => {
+export const Root: FC = () => {
   const fps = 30;
-  const introDuration = BASE_START_TIME_SECONDS; // assuming UpPriceList starts at 2s
-  const outroDuration = 5;
 
   const totalDurationInSeconds =
-    introDuration + UpPriceListDuration + DownPriceListDuration + outroDuration;
+    BASE_START_TIME_SECONDS + UpPriceListDuration + DownPriceListDuration + OUTRO_DURATION_SECONDS;
 
   const durationInFrames = Math.ceil(totalDurationInSeconds * fps);
 

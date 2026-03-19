@@ -1,4 +1,4 @@
-import React from "react";
+import { type FC } from "react";
 import { AbsoluteFill, Sequence, useVideoConfig } from "remotion";
 import { PriceList } from "./PriceList";
 import { SectionTitle } from "./ui/SectionTitle";
@@ -19,7 +19,7 @@ const chunks = chunkPlayers(players, PLAYERS_PER_CHUNK);
 export const DownPriceListDuration =
   players.length > 0 ? players.length * SECONDS_PER_PLAYER : 0;
 
-export const DownPriceList = () => {
+export const DownPriceList: FC = () => {
   const { fps } = useVideoConfig();
   if (players.length === 0) return null;
 
@@ -32,16 +32,7 @@ export const DownPriceList = () => {
         from={fps * downStartTime}
         durationInFrames={fps * DownPriceListDuration}
       >
-        <AbsoluteFill
-          style={{
-            display: "flex",
-            flexDirection: "column",
-            alignItems: "center",
-            justifyContent: "flex-start",
-            paddingTop: 80,
-            pointerEvents: "none",
-          }}
-        >
+        <AbsoluteFill className="flex flex-col items-center justify-start pt-20 pointer-events-none">
           <SectionTitle direction="down" />
         </AbsoluteFill>
       </Sequence>

@@ -1,12 +1,13 @@
-import React from "react";
+import { type FC } from "react";
 import { interpolate, spring, useCurrentFrame, useVideoConfig } from "remotion";
-import "./SectionTitle.css";
+import { clsx } from "clsx";
+import { PriceDirection } from "../../types/direction";
 
 type Props = {
-  direction: "up" | "down";
+  direction: PriceDirection;
 };
 
-export const SectionTitle: React.FC<Props> = ({ direction }) => {
+export const SectionTitle: FC<Props> = ({ direction }) => {
   const frame = useCurrentFrame();
   const { fps } = useVideoConfig();
   const isUp = direction === "up";
@@ -17,14 +18,30 @@ export const SectionTitle: React.FC<Props> = ({ direction }) => {
 
   return (
     <div
-      className="sectionTitle"
+      className="flex flex-col items-center gap-3 mb-8"
       style={{ opacity, transform: `translateY(${slideY}px) scale(${scale})` }}
     >
-      <span className="sectionTitle__label">PRICE</span>
-      <span className={`sectionTitle__main sectionTitle__main--${direction}`}>
+      <span className="text-white/45 text-[36px] font-light tracking-[14px] uppercase font-poppins">
+        PRICE
+      </span>
+      <span
+        className={clsx(
+          "gradient-text text-[96px] font-black tracking-[4px] uppercase font-space-grotesk",
+          isUp
+            ? "bg-[linear-gradient(135deg,#00FF87_0%,#00D4FF_100%)]"
+            : "bg-[linear-gradient(135deg,#FF3131_0%,#FF6B35_100%)]",
+        )}
+      >
         {isUp ? "RISES" : "FALLS"}
       </span>
-      <div className={`sectionTitle__line sectionTitle__line--${direction}`} />
+      <div
+        className={clsx(
+          "w-[140px] h-[3px] rounded-[3px]",
+          isUp
+            ? "bg-[linear-gradient(90deg,transparent,#00FF87,transparent)]"
+            : "bg-[linear-gradient(90deg,transparent,#FF3131,transparent)]",
+        )}
+      />
     </div>
   );
 };

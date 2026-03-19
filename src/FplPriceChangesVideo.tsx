@@ -1,4 +1,4 @@
-import React from "react";
+import { type FC } from "react";
 import {
   AbsoluteFill,
   Audio,
@@ -10,27 +10,18 @@ import {
 import { UpPriceList } from "./components/UpPriceList";
 import { DownPriceList } from "./components/DownPriceList";
 import { Outro } from "./components/Outro";
-import { BASE_START_TIME_SECONDS } from "./lib/video-constants";
+import { AUDIO_FADE_IN_SECONDS, BASE_START_TIME_SECONDS } from "./lib/video-constants";
+import { AUDIO_BACKGROUND, AUDIO_COMMENTARY_ALL } from "./lib/audio-constants";
 import { Intro } from "./components/Intro";
 import { ProgressBar } from "./components/ProgressBar";
+import "./styles/global.css";
 
-export const FplPriceChangesVideo: React.FC = () => {
+export const FplPriceChangesVideo: FC = () => {
   const { fps } = useVideoConfig();
-
-  const fadeInSeconds = 2;
-  const fadeInFrames = fadeInSeconds * fps;
+  const fadeInFrames = AUDIO_FADE_IN_SECONDS * fps;
 
   return (
-    <AbsoluteFill
-      style={{
-        fontFamily: "Poppins, sans-serif",
-        color: "white",
-        flexDirection: "column",
-        padding: "40px",
-        textAlign: "center",
-        background: "radial-gradient(ellipse at center, #4a0057 0%, #37003C 60%, #1a0022 100%)",
-      }}
-    >
+    <AbsoluteFill className="video-background text-white flex-col p-[40px] text-center font-poppins">
       <ProgressBar introDurationInFrames={fps * BASE_START_TIME_SECONDS} />
 
       <Sequence from={fps * BASE_START_TIME_SECONDS}>
@@ -41,12 +32,9 @@ export const FplPriceChangesVideo: React.FC = () => {
               extrapolateRight: "clamp",
             })
           }
-          src={staticFile("assets/audio/disco-funk.mp3")}
+          src={staticFile(AUDIO_BACKGROUND)}
         />
-        <Audio
-          src={staticFile("assets/audio/commentary/all-players.mp3")}
-          volume={1.0}
-        />
+        <Audio src={staticFile(AUDIO_COMMENTARY_ALL)} volume={1.0} />
       </Sequence>
 
       <Intro />

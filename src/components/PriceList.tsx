@@ -1,26 +1,21 @@
-import React from "react";
-import {
-  Audio,
-  interpolate,
-  Sequence,
-  spring,
-  staticFile,
-  useCurrentFrame,
-  useVideoConfig,
-} from "remotion";
+import { type FC } from "react";
+import { Audio, Sequence, staticFile, useCurrentFrame, useVideoConfig } from "remotion";
 import { PlayerModel } from "../models/player.model";
 import { PriceCardHorizontal } from "./PriceCardHorizontal";
 import { PriceCardVertical } from "./PriceCardVertical";
-import { FADE_IN_DURATION_FRAMES, MAX_GROUP_DURATION_SECONDS, SECONDS_PER_PLAYER } from "../lib/video-constants";
+import { MAX_GROUP_DURATION_SECONDS, SECONDS_PER_PLAYER } from "../lib/video-constants";
+import { AUDIO_MOUSE_CLICK } from "../lib/audio-constants";
+import { PriceDirection } from "../types/direction";
+import { useCardAnimation } from "../hooks/useCardAnimation";
 
 type Props = {
   players: PlayerModel[];
-  direction: "up" | "down";
+  direction: PriceDirection;
   startTimeInSeconds: number;
   variant?: "horizontal" | "vertical";
 };
 
-export const PriceList: React.FC<Props> = ({
+export const PriceList: FC<Props> = ({
   players,
   direction,
   startTimeInSeconds,
@@ -29,61 +24,25 @@ export const PriceList: React.FC<Props> = ({
   const frame = useCurrentFrame();
   const { fps } = useVideoConfig();
 
-  const durationInSeconds = Math.min(
-    players.length * SECONDS_PER_PLAYER,
-    MAX_GROUP_DURATION_SECONDS,
-  );
+  const durationInSeconds = Math.min(players.length * SECONDS_PER_PLAYER, MAX_GROUP_DURATION_SECONDS);
   const sequenceStart = fps * startTimeInSeconds;
   const totalDurationInFrames = Math.ceil(durationInSeconds * fps);
-
   const localFrame = frame - sequenceStart;
 
-  const opacity = interpolate(
-    localFrame,
-    [0, FADE_IN_DURATION_FRAMES],
-    [0, 1],
-    { extrapolateLeft: "clamp", extrapolateRight: "clamp" },
-  );
+  const { opacity, slideX, scale } = useCardAnimation(localFrame, fps);
 
-  const slideX = interpolate(
-    localFrame,
-    [0, FADE_IN_DURATION_FRAMES],
-    [80, 0],
-    { extrapolateLeft: "clamp", extrapolateRight: "clamp" },
-  );
-
-  const cardScale = spring({
-    frame: localFrame,
-    fps,
-    config: { damping: 18, stiffness: 120, mass: 0.8 },
-    durationInFrames: FADE_IN_DURATION_FRAMES,
-  });
+  const CardComponent = variant === "vertical" ? PriceCardVertical : PriceCardHorizontal;
 
   return (
     <Sequence from={sequenceStart} durationInFrames={totalDurationInFrames}>
-      <Audio
-        src={staticFile("assets/audio/mouse-click-290204.mp3")}
-        volume={0.5}
-      />
+      <Audio src={staticFile(AUDIO_MOUSE_CLICK)} volume={0.5} />
       <div
-        style={{
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "center",
-          justifyContent: "center",
-          width: "100%",
-          height: "100%",
-          opacity,
-          transform: `translateX(${slideX}px) scale(${cardScale})`,
-        }}
+        className="absolute w-full h-full flex flex-col items-center justify-center gap-5"
+        style={{ opacity, transform: `translateX(${slideX}px) scale(${scale})` }}
       >
-        {players.map((player, i) =>
-          variant === "vertical" ? (
-            <PriceCardVertical key={i} player={player} direction={direction} />
-          ) : (
-            <PriceCardHorizontal key={i} player={player} direction={direction} />
-          ),
-        )}
+        {players.map((player) => (
+          <CardComponent key={player.id} player={player} direction={direction} />
+        ))}
       </div>
     </Sequence>
   );

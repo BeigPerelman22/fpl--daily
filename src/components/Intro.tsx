@@ -1,4 +1,4 @@
-import React from "react";
+import { type FC } from "react";
 import {
   AbsoluteFill,
   Audio,
@@ -12,8 +12,9 @@ import {
 import { IntroTitle } from "./IntroTitle";
 import { getFormattedDate } from "../lib/utils";
 import { BASE_START_TIME_SECONDS } from "../lib/video-constants";
+import { AUDIO_INTRO, AUDIO_INTRO_COMMENTARY } from "../lib/audio-constants";
 
-export const Intro: React.FC = () => {
+export const Intro: FC = () => {
   const { fps } = useVideoConfig();
   const frame = useCurrentFrame();
 
@@ -25,19 +26,19 @@ export const Intro: React.FC = () => {
   return (
     <>
       <Sequence durationInFrames={fps * 3}>
-        <Audio src={staticFile("assets/audio/intro.mp3")} />
+        <Audio src={staticFile(AUDIO_INTRO)} />
       </Sequence>
       <Sequence durationInFrames={fps * BASE_START_TIME_SECONDS}>
-        <Audio src={staticFile("assets/audio/intro_commentary.mp3")} />
+        <Audio src={staticFile(AUDIO_INTRO_COMMENTARY)} />
       </Sequence>
       <Sequence durationInFrames={fps * BASE_START_TIME_SECONDS}>
-        <AbsoluteFill style={{ zIndex: 0, opacity: logoOpacity }}>
+        <AbsoluteFill className="z-0" style={{ opacity: logoOpacity }}>
           <Img
             src={staticFile("assets/images/logo.png")}
-            style={{ width: "100%", height: "100%", objectFit: "cover" }}
+            className="w-full h-full object-cover"
           />
         </AbsoluteFill>
-        <div style={{ zIndex: 1, width: "100%", height: "100%" }}>
+        <div className="z-[1] w-full h-full">
           <IntroTitle title={getFormattedDate()} />
         </div>
       </Sequence>

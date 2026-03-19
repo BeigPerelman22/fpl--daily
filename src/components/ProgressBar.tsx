@@ -1,10 +1,11 @@
-import { interpolate, useCurrentFrame, useVideoConfig } from 'remotion';
+import { type FC } from "react";
+import { interpolate, useCurrentFrame, useVideoConfig } from "remotion";
 
-type ProgressBarProps = {
+type Props = {
   introDurationInFrames: number;
 };
 
-export const ProgressBar: React.FC<ProgressBarProps> = ({ introDurationInFrames }) => {
+export const ProgressBar: FC<Props> = ({ introDurationInFrames }) => {
   const frame = useCurrentFrame();
   const { durationInFrames } = useVideoConfig();
 
@@ -12,19 +13,15 @@ export const ProgressBar: React.FC<ProgressBarProps> = ({ introDurationInFrames 
     frame,
     [introDurationInFrames, durationInFrames],
     [0, 100],
-    { extrapolateLeft: 'clamp', extrapolateRight: 'clamp' }
+    { extrapolateLeft: "clamp", extrapolateRight: "clamp" },
   );
 
   return (
-    <div
-      style={{
-        position: 'absolute',
-        top: 0,
-        left: 0,
-        height: '8px',
-        backgroundColor: '#00FF87',
-        width: `${progress}%`,
-      }}
-    />
+    <div className="absolute top-0 left-0 z-[100] w-full h-2 bg-white/10">
+      <div
+        className="h-full rounded-r-[3px]"
+        style={{ width: `${progress}%`, background: "linear-gradient(90deg, #00FF87, #00D4FF)" }}
+      />
+    </div>
   );
 };

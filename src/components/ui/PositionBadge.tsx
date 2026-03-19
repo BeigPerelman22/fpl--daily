@@ -1,34 +1,19 @@
-import React from "react";
-import { playerTypeMap } from "../../data/player-type.map";
+import { type FC } from "react";
+import { POSITION_MAP } from "../../data/position.map";
 
 type Props = {
   positionType: number;
 };
 
-const positionColors: Record<number, string> = {
-  1: "#EBFF00", // GKP — yellow
-  2: "#00B0FF", // DEF — blue
-  3: "#00FF87", // MID — FPL green
-  4: "#FF5733", // FWD — orange-red
-};
-
-export const PositionBadge: React.FC<Props> = ({ positionType }) => {
-  const color = positionColors[positionType] ?? "#FFFFFF";
-  const label = playerTypeMap[positionType] ?? "???";
+export const PositionBadge: FC<Props> = ({ positionType }) => {
+  const position = POSITION_MAP[positionType] ?? { label: "???", color: "#FFFFFF" };
 
   return (
     <span
-      style={{
-        backgroundColor: color,
-        color: "#1C0626",
-        fontWeight: 700,
-        fontSize: 34,
-        borderRadius: 12,
-        padding: "8px 24px",
-        letterSpacing: 1,
-      }}
+      className="font-bold text-[34px] rounded-[12px] py-2 px-6 tracking-[1px] text-bg-card"
+      style={{ backgroundColor: position.color }}
     >
-      {label}
+      {position.label}
     </span>
   );
 };

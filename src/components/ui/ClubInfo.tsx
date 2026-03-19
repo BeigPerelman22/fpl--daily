@@ -1,27 +1,23 @@
-import React, { useState } from "react";
+import { type FC } from "react";
 import { Img, staticFile } from "remotion";
+import { useImageFallback } from "../../hooks/useImageFallback";
+import { CLUB_BADGE_BASE_URL } from "../../lib/video-constants";
 
 type Props = {
   teamId: number;
   teamName: string;
 };
 
-export const ClubInfo: React.FC<Props> = ({ teamId, teamName }) => {
-  const [hasError, setHasError] = useState(false);
+export const ClubInfo: FC<Props> = ({ teamId, teamName }) => {
+  const { src, onError } = useImageFallback(
+    `${CLUB_BADGE_BASE_URL}/${teamId}.svg`,
+    staticFile("assets/club-placeholder.svg"),
+  );
 
   return (
-    <div style={{ display: "flex", alignItems: "center", gap: 16 }}>
-      <Img
-        src={
-          hasError
-            ? staticFile("assets/club-placeholder.svg")
-            : `https://resources.premierleague.com/premierleague25/badges-alt/${teamId}.svg`
-        }
-        alt={teamName}
-        onError={() => setHasError(true)}
-        style={{ width: 56, height: 56 }}
-      />
-      <span style={{ color: "#9E9E9E", fontSize: 40 }}>{teamName}</span>
+    <div className="flex items-center gap-4">
+      <Img src={src} alt={teamName} onError={onError} className="w-14 h-14 object-contain" />
+      <span className="text-text-muted text-[40px]">{teamName}</span>
     </div>
   );
 };

@@ -1,11 +1,12 @@
-import React from "react";
+import { type FC } from "react";
 import { Audio, interpolate, Sequence, spring, staticFile, useCurrentFrame, useVideoConfig } from "remotion";
 import { UpPriceListDuration } from "./UpPriceList";
 import { DownPriceListDuration } from "./DownPriceList";
-import { BASE_START_TIME_SECONDS } from "../lib/video-constants";
+import { BASE_START_TIME_SECONDS, OUTRO_DURATION_SECONDS } from "../lib/video-constants";
+import { AUDIO_OUTRO_COMMENTARY } from "../lib/audio-constants";
 import { YouTubeLogo } from "./YouTubeLogo";
 
-export const Outro: React.FC = () => {
+export const Outro: FC = () => {
   const startTime =
     BASE_START_TIME_SECONDS + UpPriceListDuration + DownPriceListDuration;
   const { fps } = useVideoConfig();
@@ -19,31 +20,15 @@ export const Outro: React.FC = () => {
   });
 
   return (
-    <Sequence from={fps * startTime} durationInFrames={fps * 5}>
-      <Audio src={staticFile("assets/audio/outro_commentary.mp3")} />
-      <div
-        style={{
-          fontFamily: "Poppins, sans-serif",
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-          flexDirection: "column",
-          gap: 40,
-        }}
-      >
+    <Sequence from={fps * startTime} durationInFrames={fps * OUTRO_DURATION_SECONDS}>
+      <Audio src={staticFile(AUDIO_OUTRO_COMMENTARY)} />
+      <div className="absolute w-full h-full flex flex-col items-center justify-center gap-10 font-poppins">
         <span
-          style={{
-            fontSize: 70,
-            fontWeight: 900,
-            color: "#FFFFFF",
-            textShadow: "0 4px 20px rgba(0,255,135,0.4)",
-            opacity,
-            textAlign: "center",
-            letterSpacing: 1,
-          }}
+          className="text-[70px] font-black text-white text-center tracking-[1px] text-shadow-green-glow"
+          style={{ opacity }}
         >
           Like &amp; Subscribe for{" "}
-          <span style={{ color: "#00FF87" }}>daily FPL updates!</span>
+          <span className="text-price-up">daily FPL updates!</span>
         </span>
 
         <div style={{ transform: `scale(${scale})`, opacity }}>

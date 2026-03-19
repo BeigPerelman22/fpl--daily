@@ -1,0 +1,40 @@
+@import "tailwindcss";
+
+@theme {
+  /* Brand palette */
+  --color-price-up:      #00FF87;
+  --color-price-down:    #FF3131;
+  --color-accent-blue:   #00D4FF;
+  --color-accent-orange: #FF8C00;
+  --color-bg-card:       #1C0626;
+  --color-bg-deep:       #37003C;
+  --color-text-muted:    #9E9E9E;
+  --color-bg-photo:      hsl(220 15% 18%);
+
+  /* Position badge colors */
+  --color-pos-gkp: #EBFF00;
+  --color-pos-def: #00B0FF;
+  --color-pos-mid: #00FF87;
+  --color-pos-fwd: #FF5733;
+
+  /* Fonts */
+  --font-poppins:        'Poppins', sans-serif;
+  --font-space-grotesk:  'Space Grotesk', sans-serif;
+}
+
+/* Gradient text clip utility */
+@utility gradient-text {
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Green glow text shadow utility */
+@utility text-shadow-green-glow {
+  text-shadow: 0 4px 20px rgba(0, 255, 135, 0.3);
+}
+
+/* Radial purple video background */
+.video-background {
+  background: radial-gradient(ellipse at center, #4a0057 0%, #37003C 60%, #1a0022 100%);
+}

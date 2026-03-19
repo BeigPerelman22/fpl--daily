@@ -1,5 +1,7 @@
-import React, { useState } from "react";
+import { type FC } from "react";
 import { Img, staticFile } from "remotion";
+import { useImageFallback } from "../../hooks/useImageFallback";
+import { PLAYER_PHOTO_BASE_URL } from "../../lib/video-constants";
 
 type Props = {
   photoId: string;
@@ -7,25 +9,19 @@ type Props = {
   size?: number;
 };
 
-export const PlayerPhoto: React.FC<Props> = ({ photoId, name, size = 160 }) => {
-  const [hasError, setHasError] = useState(false);
+export const PlayerPhoto: FC<Props> = ({ photoId, name, size = 160 }) => {
+  const { src, onError } = useImageFallback(
+    `${PLAYER_PHOTO_BASE_URL}/${photoId}.png`,
+    staticFile("assets/player-placeholder.svg"),
+  );
 
   return (
     <Img
-      src={
-        hasError
-          ? staticFile("assets/player-placeholder.svg")
-          : `https://resources.premierleague.com/premierleague25/photos/players/110x140/${photoId}.png`
-      }
+      src={src}
       alt={name}
-      onError={() => setHasError(true)}
-      style={{
-        width: size,
-        height: size,
-        objectFit: "contain",
-        borderRadius: 16,
-        backgroundColor: "hsl(220 15% 18%)",
-      }}
+      onError={onError}
+      style={{ width: size, height: size }}
+      className="object-contain rounded-[16px] bg-bg-photo"
     />
   );
 };

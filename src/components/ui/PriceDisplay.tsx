@@ -1,30 +1,28 @@
-import React from "react";
+import { type FC } from "react";
 import { FaArrowTrendUp, FaArrowTrendDown } from "react-icons/fa6";
+import { PriceDirection } from "../../types/direction";
+import { COLOR_PRICE_UP, COLOR_PRICE_DOWN } from "../../lib/video-constants";
 
 type Props = {
   newPrice: number;
-  direction: "up" | "down";
+  direction: PriceDirection;
 };
 
-export const PriceDisplay: React.FC<Props> = ({ newPrice, direction }) => {
+export const PriceDisplay: FC<Props> = ({ newPrice, direction }) => {
   const isUp = direction === "up";
-  const accentColor = isUp ? "#00FF87" : "#FF3131";
+  const accentColor = isUp ? COLOR_PRICE_UP : COLOR_PRICE_DOWN;
   const oldPrice = isUp
     ? parseFloat((newPrice - 0.1).toFixed(1))
     : parseFloat((newPrice + 0.1).toFixed(1));
 
   return (
-    <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: 4 }}>
-      <span style={{ color: accentColor, fontSize: 38, display: "flex", alignItems: "center", gap: 8 }}>
+    <div className="flex flex-col items-center gap-1">
+      <span className="text-[38px] flex items-center gap-2" style={{ color: accentColor }}>
         {isUp ? <FaArrowTrendUp /> : <FaArrowTrendDown />}
         {isUp ? "+0.1m" : "-0.1m"}
       </span>
-      <span style={{ color: "#FFFFFF", fontWeight: 700, fontSize: 80 }}>
-        £{newPrice}m
-      </span>
-      <span style={{ color: "#9E9E9E", fontSize: 50, textDecoration: "line-through" }}>
-        £{oldPrice}m
-      </span>
+      <span className="text-white font-bold text-[80px]">£{newPrice}m</span>
+      <span className="text-text-muted text-[50px] line-through">£{oldPrice}m</span>
     </div>
   );
 };
