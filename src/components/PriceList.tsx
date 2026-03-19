@@ -65,13 +65,6 @@ export const PriceList: React.FC<Props> = ({
         src={staticFile("assets/audio/mouse-click-290204.mp3")}
         volume={0.5}
       />
-      {players[0]?.id && (
-        <Audio
-          src={staticFile(`assets/audio/commentary/${players[0].id}.mp3`)}
-          volume={1.0}
-          startFrom={0}
-        />
-      )}
       <div
         style={{
           display: "flex",

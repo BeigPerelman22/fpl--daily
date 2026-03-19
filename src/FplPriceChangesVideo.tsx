@@ -43,6 +43,10 @@ export const FplPriceChangesVideo: React.FC = () => {
           }
           src={staticFile("assets/audio/disco-funk.mp3")}
         />
+        <Audio
+          src={staticFile("assets/audio/commentary/all-players.mp3")}
+          volume={1.0}
+        />
       </Sequence>
 
       <Intro />
