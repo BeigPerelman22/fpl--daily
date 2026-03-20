@@ -11,7 +11,7 @@ async function main() {
   const credentials = auth.credentials;
 
   // Save the credentials for later use
-  await fs.writeFile("/srs/scripts/token.json", JSON.stringify(credentials, null, 2));
+  await fs.writeFile("token.json", JSON.stringify(credentials, null, 2));
 
   console.log("✅ Token saved to token.json");
 }
