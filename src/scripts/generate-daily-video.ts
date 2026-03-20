@@ -34,6 +34,7 @@ function run(): Promise<void> {
     })
     .then(() => {
       console.log("Generating TTS audio...");
+      console.debug(process.env.ELEVENLABS_API_KEY);
       return new Promise<void>((resolve, reject) => {
         exec("npx ts-node src/scripts/generate-tts.ts", (error, stdout, stderr) => {
           if (error) {

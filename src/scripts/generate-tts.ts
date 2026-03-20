@@ -125,7 +125,6 @@ async function generateTTS() {
 }
 
 generateTTS().catch((err) => {
-  console.debug(process.env.ELEVENLABS_API_KEY);
   console.error("TTS generation failed:", err.message ?? err);
   process.exit(1);
 });
