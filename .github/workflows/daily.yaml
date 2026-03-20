@@ -2,7 +2,7 @@ name: Daily FPL Video
 
 on:
   schedule:
-    - cron: '0 5 * * 6'  # Runs every Saturday at 08:00 UTC
+    - cron: '0 6 * * 6'  # Runs every Saturday at 06:00 UTC
   workflow_dispatch:     # Allows manual runs
 
 jobs:
@@ -37,7 +37,7 @@ jobs:
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
 
-          git add public/assets/price-changes.json src/data/yesterday-players.json
+          git add public/assets/price-changes.json src/data/yesterday-players.json public/asse
 
           git commit -m "Update FPL price changes" || echo "No changes to commit"
 
