@@ -2,7 +2,10 @@
   "permissions": {
     "allow": [
       "Bash(ls C:/devl/fpl-daily/fpl-daily/node_modules/.bin/tailwind* 2>/dev/null && echo \"installed\" || echo \"not installed\")",
-      "Bash(npx tsc:*)"
+      "Bash(npx tsc:*)",
+      "Bash(find /c/devl/fpl-daily/fpl-daily -type f -name \"*.css\" -o -name \"*.scss\" -o -name \"*.sass\" -o -name \"*.less\" 2>/dev/null | head -20)",
+      "Bash(find /c/devl/fpl-daily/fpl-daily/src -type f \\\\\\( -name \"*.css\" -o -name \"*.tsx\" -o -name \"*.ts\" \\\\\\) 2>/dev/null | grep -v node_modules | sort)",
+      "Bash(find /c/devl/fpl-daily/fpl-daily -maxdepth 2 -name \"tailwind*\" -o -name \"*.config.*\" 2>/dev/null | grep -v node_modules | grep -v worktrees)"
     ]
   }
 }

@@ -5,6 +5,7 @@ import {
   interpolate,
   Sequence,
   staticFile,
+  useCurrentFrame,
   useVideoConfig,
 } from "remotion";
 import { UpPriceList } from "./components/UpPriceList";
@@ -16,9 +17,18 @@ import { ProgressBar } from "./components/ProgressBar";
 
 export const FplPriceChangesVideo: React.FC = () => {
   const { fps } = useVideoConfig();
+  const frame = useCurrentFrame();
 
   const fadeInSeconds = 2;
   const fadeInFrames = fadeInSeconds * fps;
+
+  // Pulse the midpoint color stop between #4a0057 and #7B00A0
+  const midStop = interpolate(
+    Math.sin((frame / fps) * Math.PI * 0.3),
+    [-1, 1],
+    [20, 45],
+  );
+  const background = `linear-gradient(180deg, #7B00A0 0%, #4a0057 ${midStop}%, #37003C 65%, #0d0015 100%)`;
 
   return (
     <AbsoluteFill
@@ -28,7 +38,7 @@ export const FplPriceChangesVideo: React.FC = () => {
         flexDirection: "column",
         padding: "40px",
         textAlign: "center",
-        background: "radial-gradient(ellipse at center, #4a0057 0%, #37003C 60%, #1a0022 100%)",
+        background,
       }}
     >
       <ProgressBar introDurationInFrames={fps * BASE_START_TIME_SECONDS} />

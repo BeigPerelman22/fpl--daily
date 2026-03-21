@@ -19,9 +19,9 @@ export const ClubInfo: React.FC<Props> = ({ teamId, teamName }) => {
         }
         alt={teamName}
         onError={() => setHasError(true)}
-        style={{ width: 56, height: 56 }}
+        style={{ width: 80, height: 80 }}
       />
-      <span style={{ color: "#9E9E9E", fontSize: 40 }}>{teamName}</span>
+      <span style={{ color: "#9E9E9E", fontSize: 52 }}>{teamName}</span>
     </div>
   );
 };

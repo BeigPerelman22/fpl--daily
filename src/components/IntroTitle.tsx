@@ -29,9 +29,9 @@ export const IntroTitle: React.FC<Props> = ({ title, subtitle }) => {
           width: "100%",
           display: "flex",
           flexDirection: "column",
-          justifyContent: "flex-end",
+          justifyContent: "flex-start",
           alignItems: "center",
-          paddingBottom: 80,
+          paddingTop: 220,
           opacity,
           transform: `translateY(${slideY}px)`,
         }}

@@ -38,32 +38,32 @@ export const PriceList: React.FC<Props> = ({
 
   const localFrame = frame - sequenceStart;
 
-  const opacity = interpolate(
-    localFrame,
-    [0, FADE_IN_DURATION_FRAMES],
-    [0, 1],
-    { extrapolateLeft: "clamp", extrapolateRight: "clamp" },
-  );
-
-  const slideX = interpolate(
-    localFrame,
-    [0, FADE_IN_DURATION_FRAMES],
-    [80, 0],
-    { extrapolateLeft: "clamp", extrapolateRight: "clamp" },
-  );
-
-  const cardScale = spring({
+  // Woosh: fast spring from off-screen right with slight overshoot
+  const wooshSpring = spring({
     frame: localFrame,
     fps,
-    config: { damping: 18, stiffness: 120, mass: 0.8 },
+    config: { damping: 16, stiffness: 260, mass: 0.55 },
     durationInFrames: FADE_IN_DURATION_FRAMES,
+  });
+
+  const translateX = interpolate(wooshSpring, [0, 1], [1080, 0]);
+
+  // Motion blur: heavy at start, gone by frame 10
+  const blurPx = interpolate(localFrame, [0, 10], [14, 0], {
+    extrapolateLeft: "clamp",
+    extrapolateRight: "clamp",
+  });
+
+  const opacity = interpolate(localFrame, [0, 5], [0, 1], {
+    extrapolateLeft: "clamp",
+    extrapolateRight: "clamp",
   });
 
   return (
     <Sequence from={sequenceStart} durationInFrames={totalDurationInFrames}>
       <Audio
-        src={staticFile("assets/audio/mouse-click-290204.mp3")}
-        volume={0.5}
+        src={staticFile("assets/audio/woosh.mp3")}
+        volume={0.6}
       />
       <div
         style={{
@@ -74,7 +74,8 @@ export const PriceList: React.FC<Props> = ({
           width: "100%",
           height: "100%",
           opacity,
-          transform: `translateX(${slideX}px) scale(${cardScale})`,
+          transform: `translateX(${translateX}px)`,
+          filter: `blur(${blurPx}px)`,
         }}
       >
         {players.map((player, i) =>
