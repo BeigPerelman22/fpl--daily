@@ -37,7 +37,7 @@ export const FplPriceChangesVideo: React.FC = () => {
   // Green overlay during rises
   const greenOpacity = interpolate(
     frame,
-    [risesStart, risesStart + 20, risesEnd - 20, risesEnd],
+    [risesStart, risesStart + 6, risesEnd - 6, risesEnd],
     [0, 1, 1, 0],
     { extrapolateLeft: "clamp", extrapolateRight: "clamp" },
   );
@@ -45,7 +45,7 @@ export const FplPriceChangesVideo: React.FC = () => {
   // Red overlay during falls
   const redOpacity = interpolate(
     frame,
-    [risesEnd, risesEnd + 20, fallsEnd - 20, fallsEnd],
+    [risesEnd, risesEnd + 6, fallsEnd - 6, fallsEnd],
     [0, 0.5, 0.5, 0],
     { extrapolateLeft: "clamp", extrapolateRight: "clamp" },
   );

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Img, staticFile } from "remotion";
+import { Easing, Img, interpolate, staticFile, useCurrentFrame } from "remotion";
 import { PlayerModel } from "../models/player.model";
 import { playerTypeMap } from "../data/player-type.map";
 
@@ -16,14 +16,130 @@ const positionColors: Record<number, string> = {
 };
 
 const CARD_WIDTH = 880;
+const CHAR_HEIGHT = 90;
+const FONT_SIZE = 76;
+const ANIM_START = 15;
+const ANIM_END = 40;
+const COLOR_FADE_END = 58;
+
+type DigitProps = {
+  oldChar: string;
+  newChar: string;
+  frame: number;
+  color: string;
+  accentColor: string;
+  direction: "up" | "down";
+};
+
+const PriceDigit: React.FC<DigitProps> = ({ oldChar, newChar, frame, color, accentColor, direction }) => {
+  const isAnimated = oldChar !== newChar;
+
+  const progress = interpolate(frame, [ANIM_START, ANIM_END], [0, 1], {
+    extrapolateLeft: "clamp",
+    extrapolateRight: "clamp",
+    easing: Easing.out(Easing.cubic),
+  });
+
+  const sharedStyle: React.CSSProperties = {
+    fontSize: FONT_SIZE,
+    fontWeight: 800,
+    letterSpacing: -1,
+    position: "absolute",
+    left: 0,
+    right: 0,
+    lineHeight: `${CHAR_HEIGHT}px`,
+    textAlign: "center",
+  };
+
+  const accentOpacity = interpolate(frame, [ANIM_END, COLOR_FADE_END], [1, 0], { extrapolateLeft: "clamp", extrapolateRight: "clamp" });
+  const whiteOpacity = interpolate(frame, [ANIM_END, COLOR_FADE_END], [0, 1], { extrapolateLeft: "clamp", extrapolateRight: "clamp" });
+
+  if (!isAnimated) {
+    return (
+      <div style={{ position: "relative", display: "inline-block", height: CHAR_HEIGHT, overflow: "hidden" }}>
+        <span style={{ visibility: "hidden", fontSize: FONT_SIZE, fontWeight: 800, letterSpacing: -1, lineHeight: `${CHAR_HEIGHT}px` }}>
+          {newChar}
+        </span>
+        <span style={{ ...sharedStyle, color: accentColor, top: 0, opacity: accentOpacity }}>{newChar}</span>
+        <span style={{ ...sharedStyle, color, top: 0, opacity: whiteOpacity }}>{newChar}</span>
+      </div>
+    );
+  }
+
+  // Rises: old exits down, new enters from above. Falls: old exits up, new enters from below.
+  const exitDir = direction === "up" ? CHAR_HEIGHT : -CHAR_HEIGHT;
+  const enterDir = direction === "up" ? -CHAR_HEIGHT : CHAR_HEIGHT;
+
+  const oldY = interpolate(progress, [0, 1], [0, exitDir]);
+  const oldOpacity = interpolate(progress, [0, 0.4], [1, 0], { extrapolateRight: "clamp" });
+  const newY = interpolate(progress, [0, 1], [enterDir, 0]);
+  const newOpacity = interpolate(progress, [0.4, 1], [0, 1], { extrapolateLeft: "clamp" });
+
+  return (
+    <div style={{ position: "relative", display: "inline-block", height: CHAR_HEIGHT, overflow: "hidden" }}>
+      <span style={{ visibility: "hidden", fontSize: FONT_SIZE, fontWeight: 800, letterSpacing: -1, lineHeight: `${CHAR_HEIGHT}px` }}>
+        {newChar}
+      </span>
+      <span style={{ ...sharedStyle, color: accentColor, top: 0, opacity: oldOpacity, transform: `translateY(${oldY}px)` }}>
+        {oldChar}
+      </span>
+      <span style={{ ...sharedStyle, color: accentColor, top: 0, opacity: newOpacity * accentOpacity, transform: `translateY(${newY}px)` }}>
+        {newChar}
+      </span>
+      <span style={{ ...sharedStyle, color, top: 0, opacity: newOpacity * whiteOpacity, transform: `translateY(${newY}px)` }}>
+        {newChar}
+      </span>
+    </div>
+  );
+};
+
+type PriceCounterProps = {
+  oldStr: string;
+  newStr: string;
+  frame: number;
+  color: string;
+  accentColor: string;
+  direction: "up" | "down";
+};
+
+const PriceCounter: React.FC<PriceCounterProps> = ({ oldStr, newStr, frame, color, accentColor, direction }) => {
+  const maxLen = Math.max(oldStr.length, newStr.length);
+  const paddedOld = oldStr.padStart(maxLen, " ");
+  const paddedNew = newStr.padStart(maxLen, " ");
+
+  return (
+    <div style={{ display: "flex", alignItems: "center" }}>
+      {Array.from({ length: maxLen }).map((_, i) => (
+        <PriceDigit
+          key={i}
+          oldChar={paddedOld[i]}
+          newChar={paddedNew[i]}
+          frame={frame}
+          color={color}
+          accentColor={accentColor}
+          direction={direction}
+        />
+      ))}
+    </div>
+  );
+};
 
 export const PriceCardVertical: React.FC<Props> = ({ player, direction }) => {
   const [photoError, setPhotoError] = useState(false);
   const [badgeError, setBadgeError] = useState(false);
 
+  const frame = useCurrentFrame();
+
   const positionLabel = playerTypeMap[player.positionType] ?? "???";
   const positionColor = positionColors[player.positionType] ?? "#FFFFFF";
   const accentColor = direction === "up" ? "#00FF87" : "#FF3131";
+
+  const oldPrice = direction === "up"
+    ? Math.round((player.newPrice - 0.1) * 10) / 10
+    : Math.round((player.newPrice + 0.1) * 10) / 10;
+
+  const oldStr = `£${oldPrice.toFixed(1)}m`;
+  const newStr = `£${player.newPrice.toFixed(1)}m`;
 
   return (
     <div
@@ -72,6 +188,7 @@ export const PriceCardVertical: React.FC<Props> = ({ player, direction }) => {
             display: "flex",
             alignItems: "center",
             gap: 10,
+            border: "3px solid #0d0015",
           }}
         >
           <svg width="42" height="42" viewBox="0 0 24 24" fill="none">
@@ -142,9 +259,7 @@ export const PriceCardVertical: React.FC<Props> = ({ player, direction }) => {
           gap: 20,
         }}
       >
-        <span style={{ fontSize: 76, fontWeight: 800, color: "#FFFFFF", letterSpacing: -1 }}>
-          £{player.newPrice}m
-        </span>
+        <PriceCounter oldStr={oldStr} newStr={newStr} frame={frame} color="#FFFFFF" accentColor={accentColor} direction={direction} />
         <span style={{ fontSize: 70, color: "#FFFFFF", fontWeight: 300 }}>•</span>
         <span style={{
           fontSize: 44,
