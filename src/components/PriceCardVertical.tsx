@@ -130,6 +130,16 @@ export const PriceCardVertical: React.FC<Props> = ({ player, direction }) => {
 
   const frame = useCurrentFrame();
 
+  const COUNTER_START = 10;
+  const COUNTER_END = 50;
+  const rawOwnership = interpolate(frame, [COUNTER_START, COUNTER_END], [0, player.ownedBy], {
+    extrapolateLeft: "clamp",
+    extrapolateRight: "clamp",
+    easing: Easing.out(Easing.cubic),
+  });
+  const hasDecimal = player.ownedBy % 1 !== 0;
+  const animatedOwnership = hasDecimal ? rawOwnership.toFixed(1) : Math.round(rawOwnership);
+
   const positionLabel = playerTypeMap[player.positionType] ?? "???";
   const positionColor = positionColors[player.positionType] ?? "#FFFFFF";
   const accentColor = direction === "up" ? "#00FF87" : "#FF3131";
@@ -286,7 +296,7 @@ export const PriceCardVertical: React.FC<Props> = ({ player, direction }) => {
         }}
       >
         <span style={{ fontSize: 80, fontWeight: 900, color: "#0d0015" }}>
-          {player.ownedBy}%
+          {animatedOwnership}%
         </span>
         <span
           style={{
