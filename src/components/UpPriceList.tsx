@@ -1,7 +1,6 @@
 import React from "react";
-import { AbsoluteFill, Sequence, useVideoConfig } from "remotion";
+import { Sequence, useVideoConfig } from "remotion";
 import { PriceList } from "./PriceList";
-import { SectionTitle } from "./ui/SectionTitle";
 import { chunkPlayers } from "../lib/utils";
 import {
   BASE_START_TIME_SECONDS,
@@ -24,25 +23,6 @@ export const UpPriceList = () => {
 
   return (
     <>
-      {/* Title persists for the full section */}
-      <Sequence
-        from={fps * BASE_START_TIME_SECONDS}
-        durationInFrames={fps * UpPriceListDuration}
-      >
-        <AbsoluteFill
-          style={{
-            display: "flex",
-            flexDirection: "column",
-            alignItems: "center",
-            justifyContent: "flex-start",
-            paddingTop: 80,
-            pointerEvents: "none",
-          }}
-        >
-          <SectionTitle direction="up" />
-        </AbsoluteFill>
-      </Sequence>
-
       {/* One card per player, slides in independently */}
       {chunks.map((group, index) => (
         <PriceList
