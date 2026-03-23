@@ -8,8 +8,8 @@ import {
   useCurrentFrame,
   useVideoConfig,
 } from "remotion";
-import { UpPriceList } from "./components/UpPriceList";
-import { DownPriceList } from "./components/DownPriceList";
+import { UpPriceList, UpPriceListDuration } from "./components/UpPriceList";
+import { DownPriceList, DownPriceListDuration } from "./components/DownPriceList";
 import { Outro } from "./components/Outro";
 import { BASE_START_TIME_SECONDS } from "./lib/video-constants";
 import { Intro } from "./components/Intro";
@@ -22,13 +22,42 @@ export const FplPriceChangesVideo: React.FC = () => {
   const fadeInSeconds = 2;
   const fadeInFrames = fadeInSeconds * fps;
 
-  // Pulse the midpoint color stop between #4a0057 and #7B00A0
+  // Pulsing mid-stop
   const midStop = interpolate(
     Math.sin((frame / fps) * Math.PI * 0.3),
     [-1, 1],
-    [20, 45],
+    [30, 50],
   );
-  const background = `linear-gradient(180deg, #7B00A0 0%, #4a0057 ${midStop}%, #37003C 65%, #0d0015 100%)`;
+
+  // Timing
+  const risesStart = fps * BASE_START_TIME_SECONDS;
+  const risesEnd = fps * (BASE_START_TIME_SECONDS + UpPriceListDuration);
+  const fallsEnd = fps * (BASE_START_TIME_SECONDS + UpPriceListDuration + DownPriceListDuration);
+
+  // Green overlay during rises
+  const greenOpacity = interpolate(
+    frame,
+    [risesStart, risesStart + 6, risesEnd - 6, risesEnd],
+    [0, 1, 1, 0],
+    { extrapolateLeft: "clamp", extrapolateRight: "clamp" },
+  );
+
+  // Red overlay during falls
+  const redOpacity = interpolate(
+    frame,
+    [risesEnd, risesEnd + 6, fallsEnd - 6, fallsEnd],
+    [0, 0.5, 0.5, 0],
+    { extrapolateLeft: "clamp", extrapolateRight: "clamp" },
+  );
+
+  // Purple base (intro/outro)
+  const purpleBackground = `linear-gradient(180deg, #7B00A0 0%, #4a0057 ${midStop}%, #37003C 65%, #0d0015 100%)`;
+
+  // FPL light green
+  const greenBackground = `linear-gradient(180deg, #00FF87 0%, #00D4FF ${midStop}%, #00c4f0 100%)`;
+
+  // Red gradient for falls
+  const redBackground = `linear-gradient(180deg, #FF3131 0%, #FF6B35 ${midStop}%, #cc1a1a 100%)`;
 
   return (
     <AbsoluteFill
@@ -38,9 +67,14 @@ export const FplPriceChangesVideo: React.FC = () => {
         flexDirection: "column",
         padding: "40px",
         textAlign: "center",
-        background,
+        background: purpleBackground,
       }}
     >
+      {/* Green overlay during rises */}
+      <AbsoluteFill style={{ background: greenBackground, opacity: greenOpacity, zIndex: 0 }} />
+      {/* Red overlay during falls */}
+      <AbsoluteFill style={{ background: redBackground, opacity: redOpacity, zIndex: 0 }} />
+
       <ProgressBar introDurationInFrames={fps * BASE_START_TIME_SECONDS} />
 
       <Sequence from={fps * BASE_START_TIME_SECONDS}>
