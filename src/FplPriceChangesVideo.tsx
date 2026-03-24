@@ -35,20 +35,20 @@ export const FplPriceChangesVideo: React.FC = () => {
   const fallsEnd = fps * (BASE_START_TIME_SECONDS + UpPriceListDuration + DownPriceListDuration);
 
   // Green overlay during rises
-  const greenOpacity = interpolate(
+  const greenOpacity = UpPriceListDuration > 0 ? interpolate(
     frame,
     [risesStart, risesStart + 6, risesEnd - 6, risesEnd],
     [0, 1, 1, 0],
     { extrapolateLeft: "clamp", extrapolateRight: "clamp" },
-  );
+  ) : 0;
 
   // Red overlay during falls
-  const redOpacity = interpolate(
+  const redOpacity = DownPriceListDuration > 0 ? interpolate(
     frame,
     [risesEnd, risesEnd + 6, fallsEnd - 6, fallsEnd],
     [0, 0.5, 0.5, 0],
     { extrapolateLeft: "clamp", extrapolateRight: "clamp" },
-  );
+  ) : 0;
 
   // Purple base (intro/outro)
   const purpleBackground = `linear-gradient(180deg, #7B00A0 0%, #4a0057 ${midStop}%, #37003C 65%, #0d0015 100%)`;

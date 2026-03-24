@@ -1,5 +1,3 @@
-import React from "react";
-import { Sequence, useVideoConfig } from "remotion";
 import { PriceList } from "./PriceList";
 import { chunkPlayers } from "../lib/utils";
 import {
@@ -18,7 +16,6 @@ export const UpPriceListDuration =
   players.length > 0 ? players.length * SECONDS_PER_PLAYER : 0;
 
 export const UpPriceList = () => {
-  const { fps } = useVideoConfig();
   if (players.length === 0) return null;
 
   return (

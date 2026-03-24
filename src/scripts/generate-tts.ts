@@ -88,8 +88,7 @@ async function generateTTS() {
   console.log(`✅ Combined players commentary → ${combinedOutputPath}`);
 
   // Generate intro commentary
-  const dateStr = new Date().toLocaleDateString("en-US", { month: "long", day: "numeric" });
-  const introText = getIntroCommentaryText(dateStr);
+  const introText = getIntroCommentaryText();
   console.log(`🎙️ Generating intro commentary: "${introText}"`);
   const introStream = await client.textToSpeech.convert(voice.id, {
     text: introText,

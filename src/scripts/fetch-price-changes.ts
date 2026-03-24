@@ -9,12 +9,14 @@ const CACHE_FILE = "src/data/yesterday-players.json";
 
 async function getPriceChanges() {
   const res = await fetch(API_URL);
-  const data: { elements: ApiPlayer[], teams: TeamModel[] } = (await res.json()) as {
+  const data: { elements: ApiPlayer[], teams: TeamModel[], events?: { id: number; is_current: boolean; is_next: boolean }[] } = (await res.json()) as {
     elements: ApiPlayer[];
     teams: TeamModel[];
+    events?: { id: number; is_current: boolean; is_next: boolean }[];
   };
   const players: ApiPlayer[] = data.elements;
   const teams: TeamModel[] = data.teams;
+  const currentGw = data.events?.find(e => e.is_next)?.id ?? data.events?.find(e => e.is_current)?.id ?? null;
 
   const today: Record<number, number> = {};
 
@@ -51,7 +53,7 @@ async function getPriceChanges() {
   fs.writeFileSync(CACHE_FILE, JSON.stringify(today, null, 2));
   fs.writeFileSync(
     OUTPUT_FILE,
-    JSON.stringify({ priceUps, priceDowns }, null, 2),
+    JSON.stringify({ priceUps, priceDowns, gameweek: currentGw }, null, 2),
   );
 
   console.log("✅ Price change data saved to", OUTPUT_FILE);

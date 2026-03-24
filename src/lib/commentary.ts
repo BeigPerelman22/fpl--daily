@@ -7,8 +7,8 @@ export function generateCommentary(
   return `${playerName} ${verb} to ${newPrice.toFixed(1)}`;
 }
 
-export function getIntroCommentaryText(date: string): string {
-  return `Hello FPL managers! Here are the player price changes for ${date}!`;
+export function getIntroCommentaryText(): string {
+  return `Price changes just dropped!`;
 }
 
 export const OUTRO_COMMENTARY_TEXT =

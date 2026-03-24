@@ -3,11 +3,10 @@ import { interpolate, Sequence, useCurrentFrame, useVideoConfig } from "remotion
 import { BASE_START_TIME_SECONDS } from "../lib/video-constants";
 
 type Props = {
-  title: string;
   subtitle?: string;
 };
 
-export const IntroTitle: React.FC<Props> = ({ title, subtitle }) => {
+export const IntroTitle: React.FC<Props> = ({ subtitle }) => {
   const frame = useCurrentFrame();
   const { fps } = useVideoConfig();
 
@@ -36,43 +35,21 @@ export const IntroTitle: React.FC<Props> = ({ title, subtitle }) => {
           transform: `translateY(${slideY}px)`,
         }}
       >
-        {/* Label */}
-        <span
-          style={{
-            fontSize: 36,
-            fontWeight: 700,
-            letterSpacing: 6,
-            color: "#00FF87",
-            textTransform: "uppercase",
-            marginBottom: 16,
-          }}
-        >
-          FPL Price Changes
-        </span>
-
-        {/* Date */}
+        {/* Title */}
         <span
           style={{
             fontSize: 110,
             fontWeight: 900,
             color: "#FFFFFF",
             textShadow: "0 4px 20px rgba(0,255,135,0.3)",
+            letterSpacing: 6,
+            textTransform: "uppercase",
             lineHeight: 1,
           }}
         >
-          {title}
+          Price Changes
         </span>
 
-        {/* Green underline accent */}
-        <div
-          style={{
-            width: 120,
-            height: 6,
-            backgroundColor: "#00FF87",
-            borderRadius: 3,
-            marginTop: 20,
-          }}
-        />
 
         {subtitle && (
           <span
