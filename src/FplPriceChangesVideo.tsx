@@ -10,10 +10,8 @@ import {
 } from "remotion";
 import { UpPriceList, UpPriceListDuration } from "./components/UpPriceList";
 import { DownPriceList, DownPriceListDuration } from "./components/DownPriceList";
-import { Outro } from "./components/Outro";
 import { BASE_START_TIME_SECONDS } from "./lib/video-constants";
 import { Intro } from "./components/Intro";
-import { ProgressBar } from "./components/ProgressBar";
 
 export const FplPriceChangesVideo: React.FC = () => {
   const { fps } = useVideoConfig();
@@ -75,7 +73,6 @@ export const FplPriceChangesVideo: React.FC = () => {
       {/* Red overlay during falls */}
       <AbsoluteFill style={{ background: redBackground, opacity: redOpacity, zIndex: 0 }} />
 
-      <ProgressBar introDurationInFrames={fps * BASE_START_TIME_SECONDS} />
 
       <Sequence from={fps * BASE_START_TIME_SECONDS}>
         <Audio
@@ -96,7 +93,6 @@ export const FplPriceChangesVideo: React.FC = () => {
       <Intro />
       <DownPriceList />
       <UpPriceList />
-      <Outro />
     </AbsoluteFill>
   );
 };

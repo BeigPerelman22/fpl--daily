@@ -34,6 +34,11 @@ export const Intro: React.FC = () => {
     easing: Easing.out(Easing.cubic),
   });
 
+  const dateOpacity = interpolate(frame, [0, 20], [0, 1], {
+    extrapolateLeft: "clamp",
+    extrapolateRight: "clamp",
+  });
+
   return (
     <>
       <Sequence durationInFrames={fps * 3}>
@@ -117,7 +122,7 @@ export const Intro: React.FC = () => {
               color: "#FFFFFF",
               letterSpacing: 3,
               textTransform: "uppercase",
-              opacity: 0.8,
+              opacity: dateOpacity * 0.8,
               maxWidth: 560,
               textAlign: "center",
             }}

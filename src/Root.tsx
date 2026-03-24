@@ -8,10 +8,8 @@ import { BASE_START_TIME_SECONDS } from "./lib/video-constants";
 export const Root: React.FC = () => {
   const fps = 30;
   const introDuration = BASE_START_TIME_SECONDS; // assuming UpPriceList starts at 2s
-  const outroDuration = 5;
-
   const totalDurationInSeconds =
-    introDuration + UpPriceListDuration + DownPriceListDuration + outroDuration;
+    introDuration + UpPriceListDuration + DownPriceListDuration;
 
   const durationInFrames = Math.ceil(totalDurationInSeconds * fps);
 
