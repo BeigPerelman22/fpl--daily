@@ -34,7 +34,7 @@ Find out which FPL players went up in price and who took a price drop overnight.
 
 👉 Like & subscribe for your daily FPL updates!
 
-#FPL #FPLPriceChanges #FantasyPremierLeague #FPLTips #GameweekUpdates #FPLShorts #FPLDaily #FPL2026`;
+#viral #shorts #FPL  #FantasyPremierLeague #FPLTips`;
 
   const videoPath = `./out/fpl-price-changes-${formattedDate}.mp4`;
 

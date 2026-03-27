@@ -1,46 +1,46 @@
-name: Daily FPL Video
-
-on:
-  schedule:
-    - cron: '0 5 * * 6'  # Runs every Saturday at 06:00 UTC
-  workflow_dispatch:     # Allows manual runs
-
-jobs:
-  build-and-upload:
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: Checkout repo
-        uses: actions/checkout@v3
-
-      - name: Setup Node.js
-        uses: actions/setup-node@v3
-        with:
-          node-version: 20
-
-      - name: Install dependencies
-        run: npm ci
-
-      - name: Write client_secret.json
-        run: echo "${{ secrets.CLIENT_SECRET_JSON }}"  | base64 --decode > src/scripts/client_secret.json
-
-      - name: Write oauth_token.json
-        run: echo "${{ secrets.OAUTH_TOKEN_JSON }}"  | base64 --decode > src/scripts/token.json
-
-      - name: Run daily video generation and upload
-        run: npm run daily
-        env:
-          ELEVENLABS_API_KEY: ${{secrets.ELEVENLABS_API_KEY}}
-
-      # Commit and Push price changes only if video generation is successful
-      - name: Commit and Push price changes
-        if: success()  # Only run this step if the previous steps were successful
-        run: |
-          git config --global user.name "github-actions[bot]"
-          git config --global user.email "github-actions[bot]@users.noreply.github.com"
-
-          git add public/assets/price-changes.json src/data/yesterday-players.json
-
-          git commit -m "Update FPL price changes" || echo "No changes to commit"
-
-          git push https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git HEAD:main
+#name: Daily FPL Video
+#
+#on:
+#  schedule:
+#    - cron: '0 5 * * 6'  # Runs every Saturday at 06:00 UTC
+#  workflow_dispatch:     # Allows manual runs
+#
+#jobs:
+#  build-and-upload:
+#    runs-on: ubuntu-latest
+#
+#    steps:
+#      - name: Checkout repo
+#        uses: actions/checkout@v3
+#
+#      - name: Setup Node.js
+#        uses: actions/setup-node@v3
+#        with:
+#          node-version: 20
+#
+#      - name: Install dependencies
+#        run: npm ci
+#
+#      - name: Write client_secret.json
+#        run: echo "${{ secrets.CLIENT_SECRET_JSON }}"  | base64 --decode > src/scripts/client_secret.json
+#
+#      - name: Write oauth_token.json
+#        run: echo "${{ secrets.OAUTH_TOKEN_JSON }}"  | base64 --decode > src/scripts/token.json
+#
+#      - name: Run daily video generation and upload
+#        run: npm run daily
+#        env:
+#          ELEVENLABS_API_KEY: ${{secrets.ELEVENLABS_API_KEY}}
+#
+#      # Commit and Push price changes only if video generation is successful
+#      - name: Commit and Push price changes
+#        if: success()  # Only run this step if the previous steps were successful
+#        run: |
+#          git config --global user.name "github-actions[bot]"
+#          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+#
+#          git add public/assets/price-changes.json src/data/yesterday-players.json
+#
+#          git commit -m "Update FPL price changes" || echo "No changes to commit"
+#
+#          git push https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git HEAD:main
