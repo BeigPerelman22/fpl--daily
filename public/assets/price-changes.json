@@ -1,5 +1,43 @@
 {
-  "priceUps": [],
-  "priceDowns": [],
+  "priceUps": [
+    {
+      "id": 624,
+      "name": "Bowen",
+      "newPrice": 7.6,
+      "photoId": "178186",
+      "positionType": 4,
+      "news": "",
+      "ownedBy": 8.8,
+      "teamId": 21,
+      "teamName": "West Ham",
+      "commentary": "Bowen rises to 7.6"
+    }
+  ],
+  "priceDowns": [
+    {
+      "id": 10,
+      "name": "Lewis-Skelly",
+      "newPrice": 5,
+      "photoId": "499169",
+      "positionType": 2,
+      "news": "",
+      "ownedBy": 1.4,
+      "teamId": 3,
+      "teamName": "Arsenal",
+      "commentary": "Lewis-Skelly drops to 5.0"
+    },
+    {
+      "id": 469,
+      "name": "Pope",
+      "newPrice": 5,
+      "photoId": "98747",
+      "positionType": 1,
+      "news": "",
+      "ownedBy": 4.4,
+      "teamId": 4,
+      "teamName": "Newcastle",
+      "commentary": "Pope drops to 5.0"
+    }
+  ],
   "gameweek": 32
 }
